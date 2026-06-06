@@ -23,7 +23,7 @@
             position: relative;
         }
         
-        /* Floating Hearts Background */
+        /* Floating Hearts Background (No Files Needed) */
         .hearts-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -63,23 +63,15 @@
         .music-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
         @keyframes bounceMusic { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1.1); } }
 
-        /* Solid Visibility Transitions for Screens */
         .screen {
             display: none;
-            opacity: 0;
-            pointer-events: none;
             width: 100%; height: 100%;
             position: absolute; top: 0; left: 0;
             justify-content: center; align-items: center;
             flex-direction: column; text-align: center;
             padding: 20px; z-index: 5;
-            transition: opacity 0.5s ease-in-out;
         }
-        .active { 
-            display: flex !important; 
-            opacity: 1 !important;
-            pointer-events: auto !important;
-        }
+        .active { display: flex !important; }
         
         /* Continuous Heavy Pulsing & Popping Animation */
         .pop-button {
@@ -100,7 +92,7 @@
             100% { transform: scale(1); box-shadow: 0 0 25px #ff007f, 0 0 50px #7f00ff; }
         }
 
-        /* Screen 1 Setup */
+        /* Screens Setup */
         #screen1 { background: #070714; }
         .login-card {
             background: rgba(255, 255, 255, 0.03); padding: 40px 30px;
@@ -115,7 +107,6 @@
             letter-spacing: 6px; width: 220px; outline: none;
         }
 
-        /* Screen 2 Setup */
         #screen2 { background: linear-gradient(135deg, #0575e6, #00f260); }
         .glass-panel {
             background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(15px);
@@ -125,24 +116,15 @@
         .waiting-text { font-size: 24px; font-weight: 600; text-shadow: 0 2px 12px rgba(0,0,0,0.2); }
         .hidden-btn { display: none; opacity: 0; background: linear-gradient(45deg, #d400d4, #00d4d4) !important; box-shadow: 0 0 25px #d400d4 !important; transition: opacity 0.5s ease; }
 
-        /* Screen 3 Setup - Interactive Cake */
         #screen3 { background: radial-gradient(circle, #20003c 0%, #0b001a 100%); }
-        .neon-title { font-size: 38px; color: #00f2ff; text-shadow: 0 0 10px #00f2ff, 0 0 20px #7f00ff; font-weight: 700; margin-bottom: 10px; }
-        .cake-hint { font-size: 14px; color: #ffaa00; font-weight: 600; letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; animation: pulseGlow 1.5s infinite alternate; }
-        @keyframes pulseGlow { 0% { opacity: 0.5; } 100% { opacity: 1; text-shadow: 0 0 10px #ffaa00; } }
-        
-        .neon-cake { width: 180px; height: 130px; background: #ff007f; border-radius: 15px 15px 0 0; position: relative; margin: 50px 0; box-shadow: 0 0 25px #ff007f, inset 0 5px 0 #fff; cursor: pointer; }
+        .neon-title { font-size: 38px; color: #00f2ff; text-shadow: 0 0 10px #00f2ff, 0 0 20px #7f00ff; font-weight: 700; margin-bottom: 20px; }
+        .neon-cake { width: 180px; height: 130px; background: #ff007f; border-radius: 15px 15px 0 0; position: relative; margin: 50px 0; box-shadow: 0 0 25px #ff007f, inset 0 5px 0 #fff; }
         .neon-cake::after { content: ''; position: absolute; bottom: 0; left: -10px; width: 200px; height: 15px; background: #7f00ff; border-radius: 10px; box-shadow: 0 0 15px #7f00ff; }
         .candle { width: 12px; height: 50px; background: #fff; position: absolute; top: -50px; left: 50%; transform: translateX(-50%); border-radius: 5px 5px 0 0; box-shadow: 0 0 10px #fff; }
-        
-        .flame { width: 16px; height: 24px; background: #ffaa00; border-radius: 50% 50% 20% 20%; position: absolute; top: -24px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 15px #ffaa00, 0 0 30px #ff0000; animation: burn 0.1s infinite alternate; transition: opacity 0.4s ease, transform 0.4s ease; }
+        .flame { width: 16px; height: 24px; background: #ffaa00; border-radius: 50% 50% 20% 20%; position: absolute; top: -24px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 15px #ffaa00, 0 0 30px #ff0000; animation: burn 0.1s infinite alternate; }
         @keyframes burn { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1.1) skewX(3deg); } }
-        
-        /* Hidden Class for Blow Effect */
-        .blown-out { opacity: 0 !important; transform: translateX(-50%) scale(0) !important; pointer-events: none; }
-        #cake-next-btn { display: none; opacity: 0; transition: opacity 0.5s ease; }
 
-        /* Screen 4 Setup - Fireworks */
+        /* Screen 4: Anime Fireworks */
         #screen4 { background: #010105; }
         #canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; }
         .firework-overlay { position: relative; z-index: 6; }
@@ -157,7 +139,7 @@
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #ff007f } }
 
-        /* Screen 5 Setup - Flip Card Cover */
+        /* Screen 5: Flip Card Config */
         #screen5 { background: #06060a; }
         .card-container { perspective: 1200px; width: 350px; height: 510px; cursor: pointer; }
         .card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -178,8 +160,10 @@
 </head>
 <body>
 
+    <!-- Local Audio file -->
     <audio id="bg-music" src="new-light.mp3" loop preload="auto"></audio>
 
+    <!-- Interactive Audio Waves Bars Toggle -->
     <div id="music-status" class="music-indicator">
         <div class="music-bar"></div>
         <div class="music-bar"></div>
@@ -187,8 +171,10 @@
         <span style="font-size: 11px; font-weight:600; color: #eee; margin-left: 2px;">Music Playing</span>
     </div>
 
+    <!-- Procedural Background Hearts Generator -->
     <div id="hearts-container" class="hearts-bg"></div>
 
+    <!-- SCREEN 1 -->
     <div id="screen1" class="screen active">
         <div id="passcode-box" class="login-card">
             <h2 style="margin-bottom: 25px; color: #ff007f; font-size: 20px; letter-spacing: 1px;">Enter Passcode ❤️</h2>
@@ -198,6 +184,7 @@
         </div>
     </div>
 
+    <!-- SCREEN 2 -->
     <div id="screen2" class="screen">
         <div class="glass-panel">
             <div class="waiting-text" id="dynamic-text">✨ There's a surprise waiting for you... ✨</div>
@@ -205,15 +192,16 @@
         </div>
     </div>
 
+    <!-- SCREEN 3 -->
     <div id="screen3" class="screen">
         <div class="neon-title">Magical Cake Time! ✨</div>
-        <div class="cake-hint" id="blow-hint-text">💨 Tap the candle flame to blow it out!</div>
-        <div class="neon-cake" onclick="blowCandleFlame()">
-            <div class="candle"><div id="cake-flame" class="flame"></div></div>
+        <div class="neon-cake">
+            <div class="candle"><div class="flame"></div></div>
         </div>
-        <button id="cake-next-btn" class="pop-button" onclick="showScreen4()">Begin Magic</button>
+        <button class="pop-button" onclick="showScreen4()">Begin Magic</button>
     </div>
 
+    <!-- SCREEN 4 -->
     <div id="screen4" class="screen">
         <canvas id="canvas"></canvas>
         <div class="firework-overlay">
@@ -222,10 +210,13 @@
         </div>
     </div>
 
+    <!-- SCREEN 5 -->
     <div id="screen5" class="screen">
+        <!-- Interactive Click To Flip Container Cover -->
         <div class="card-container" onclick="toggleCardFlip()">
             <div class="card-inner" id="gift-card">
                 
+                <!-- Front Frame Shape Photo -->
                 <div class="card-front">
                     <div class="photo-frame-full">
                         <img src="hani-photo.jpg" alt="Hani ❤️" class="full-hani-img" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500'">
@@ -236,6 +227,7 @@
                     </div>
                 </div>
 
+                <!-- Back Frame Personal Custom Message -->
                 <div class="card-back">
                     <h3 style="color: #ff007f; font-size: 22px; font-weight: 600; border-bottom: 1px solid rgba(255,0,127,0.3); padding-bottom: 5px; width: 100%;">My Whole Heart ❤️</h3>
                     <p class="final-msg">
@@ -250,76 +242,9 @@
     </div>
 
     <script>
-        function navigateTo(hide, show) {
-            document.getElementById(hide).classList.remove('active');
-            document.getElementById(show).classList.add('active');
-        }
-
-        function verifyPasscode() {
-            const code = document.getElementById('password').value;
-            if(code === "07062003") {
-                // Instantly swap screen active flags
-                navigateTo('screen1', 'screen2');
-                
-                // Play audio track safely
-                const music = document.getElementById('bg-music');
-                music.play().then(() => {
-                    document.getElementById('music-status').style.display = 'flex';
-                }).catch(e => console.log("Audio awaiting interaction hook", e));
-                
-                // Fire background triggers safely
-                setTimeout(() => {
-                    startHeartsGenerator();
-                    triggerTealScreenSequence();
-                }, 50);
-            } else {
-                alert("Incorrect passcode! Try again, beautiful. ❤️");
-            }
-        }
-
-        function triggerTealScreenSequence() {
-            setTimeout(() => {
-                const btn = document.getElementById('surprise-btn');
-                btn.style.display = "inline-block";
-                setTimeout(() => btn.style.opacity = 1, 100);
-            }, 2000);
-        }
-
-        function showScreen3() { navigateTo('screen2', 'screen3'); }
-        
-        function blowCandleFlame() {
-            const flame = document.getElementById('cake-flame');
-            const hint = document.getElementById('blow-hint-text');
-            const nextBtn = document.getElementById('cake-next-btn');
-            
-            flame.classList.add('blown-out');
-            hint.innerHTML = "🎉 Yayy! You blew it out! ❤️";
-            hint.style.color = "#00f2ff";
-            
-            nextBtn.style.display = "inline-block";
-            setTimeout(() => nextBtn.style.opacity = 1, 150);
-        }
-
-        function showScreen4() { 
-            navigateTo('screen3', 'screen4'); 
-            document.getElementById('typewriter').classList.add('start-typing');
-            initAnimeFireworks(); 
-        }
-        
-        function showScreen5() { 
-            window.runFireworks = false; 
-            navigateTo('screen4', 'screen5'); 
-            setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 1500); 
-        }
-
-        function toggleCardFlip() {
-            document.getElementById('gift-card').classList.toggle('flipped');
-        }
-
-        // Hearts Spawning Loop Engine
+        // Smooth Procedural Hearts Spawning Engine
         function startHeartsGenerator() {
             const container = document.getElementById('hearts-container');
-            if(!container) return;
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.classList.add('floating-heart');
@@ -332,7 +257,55 @@
             }, 450);
         }
 
-        // --- FIREWORKS RIGGING ---
+        function verifyPasscode() {
+            const code = document.getElementById('password').value;
+            if(code === "07062003") {
+                const music = document.getElementById('bg-music');
+                music.play().then(() => {
+                    document.getElementById('music-status').style.display = 'flex';
+                }).catch(e => console.log("Audio waiting direct play interaction", e));
+                
+                startHeartsGenerator();
+                navigateTo('screen1', 'screen2');
+                triggerTealScreenSequence();
+            } else {
+                alert("Incorrect passcode! Try again, beautiful. ❤️");
+            }
+        }
+
+        function navigateTo(hide, show) {
+            document.getElementById(hide).classList.remove('active');
+            document.getElementById(show).classList.add('active');
+        }
+
+        function triggerTealScreenSequence() {
+            setTimeout(() => {
+                const btn = document.getElementById('surprise-btn');
+                btn.style.display = "inline-block";
+                setTimeout(() => btn.style.opacity = 1, 100);
+            }, 2000);
+        }
+
+        function showScreen3() { navigateTo('screen2', 'screen3'); }
+        
+        function showScreen4() { 
+            navigateTo('screen3', 'screen4'); 
+            document.getElementById('typewriter').classList.add('start-typing');
+            initAnimeFireworks(); 
+        }
+        
+        function showScreen5() { 
+            window.runFireworks = false; 
+            navigateTo('screen4', 'screen5'); 
+            // Automatically flip open after 1.5 seconds to surprise her, then she can toggle click
+            setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 1500); 
+        }
+
+        function toggleCardFlip() {
+            document.getElementById('gift-card').classList.toggle('flipped');
+        }
+
+        // --- HUGE NEON ANIME FIREWORKS RIGGING ---
         window.runFireworks = false;
         function initAnimeFireworks() {
             const canvas = document.getElementById('canvas');
@@ -384,4 +357,9 @@
                 if (Math.random() < 0.065 && rockets.length < 4) { rockets.push(new BigRocket()); }
                 for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && rockets[i].particles.length === 0) { rockets.splice(i, 1); } }
                 requestAnimationFrame(loop);
-            
+            }
+            loop();
+        }
+    </script>
+</body>
+</html>
