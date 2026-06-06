@@ -23,75 +23,80 @@
             position: relative;
         }
         
-        /* Fixed Background Funny GIFs Layers - Loading your custom files */
-        .bg-gif-container {
+        /* Floating Hearts Background (No Files Needed) */
+        .hearts-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             z-index: 1;
-            display: none; 
-            opacity: 0.55; /* Solid visibility so they look funny and clear */
+            overflow: hidden;
         }
-        .gif-element {
+        .floating-heart {
             position: absolute;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            object-fit: contain;
+            bottom: -20px;
+            color: rgba(255, 0, 127, 0.4);
+            font-size: 20px;
+            animation: floatUp 6s linear infinite;
         }
-        /* Strict Screen Placements for your custom GIFs */
-        .gif-cat { top: 8%; left: 6%; width: 160px; height: 160px; }
-        .gif-funny1 { bottom: 10%; left: 6%; width: 140px; height: 140px; }
-        .gif-funny2 { top: 10%; right: 6%; width: 140px; height: 140px; }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Music Indicator Overlay */
+        .music-indicator {
+            position: absolute;
+            top: 20px; right: 20px;
+            display: none; align-items: center; gap: 4px;
+            background: rgba(255, 255, 255, 0.07);
+            padding: 8px 12px; border-radius: 20px;
+            backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);
+            z-index: 10;
+        }
+        .music-bar {
+            width: 3px; height: 15px; background-color: #ff007f;
+            animation: bounceMusic 0.8s ease-in-out infinite alternate;
+        }
+        .music-bar:nth-child(2) { animation-delay: 0.2s; height: 22px; background-color: #00f2ff; }
+        .music-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
+        @keyframes bounceMusic { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1.1); } }
 
         .screen {
             display: none;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0; left: 0;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-            z-index: 5;
+            width: 100%; height: 100%;
+            position: absolute; top: 0; left: 0;
+            justify-content: center; align-items: center;
+            flex-direction: column; text-align: center;
+            padding: 20px; z-index: 5;
         }
-        .active {
-            display: flex !important;
-        }
+        .active { display: flex !important; }
         
-        /* Continuous Heavy Pulsing & Popping Animation for Buttons */
+        /* Continuous Heavy Pulsing & Popping Animation */
         .pop-button {
             background: linear-gradient(45deg, #ff007f, #7f00ff) !important;
-            color: white !important;
-            border: none !important;
-            padding: 16px 42px !important;
-            font-size: 16px !important;
-            font-weight: 700 !important;
-            border-radius: 50px !important;
+            color: white !important; border: none !important;
+            padding: 16px 42px !important; font-size: 16px !important;
+            font-weight: 700 !important; border-radius: 50px !important;
             cursor: pointer !important;
             box-shadow: 0 0 25px #ff007f, 0 0 50px #7f00ff !important;
-            margin-top: 30px !important;
-            letter-spacing: 1px !important;
-            text-transform: uppercase !important;
-            display: inline-block !important;
-            animation: ultimatePulse 1.2s infinite ease-in-out !important; /* Faster popping speed */
+            margin-top: 30px !important; letter-spacing: 1px !important;
+            text-transform: uppercase !important; display: inline-block !important;
+            animation: ultimatePulse 1.2s infinite ease-in-out !important;
             transform-origin: center !important;
         }
         @keyframes ultimatePulse {
             0% { transform: scale(1); box-shadow: 0 0 25px #ff007f, 0 0 50px #7f00ff; }
-            50% { transform: scale(1.15); box-shadow: 0 0 40px #ff007f, 0 0 70px #7f00ff; } /* Massive pop out */
+            50% { transform: scale(1.14); box-shadow: 0 0 40px #ff007f, 0 0 70px #7f00ff; }
             100% { transform: scale(1); box-shadow: 0 0 25px #ff007f, 0 0 50px #7f00ff; }
         }
-        .pop-button:active { transform: scale(0.92) !important; }
 
-        /* Screens Styling */
+        /* Screens Setup */
         #screen1 { background: #070714; }
         .login-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 40px 30px;
-            border-radius: 24px;
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.03); padding: 40px 30px;
+            border-radius: 24px; backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 20px 40px rgba(0,0,0,0.7);
         }
@@ -134,46 +139,40 @@
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #ff007f } }
 
-        /* Screen 5: Clean Full Frame Card Cover */
+        /* Screen 5: Flip Card Config */
         #screen5 { background: #06060a; }
-        .card-container { perspective: 1200px; width: 350px; height: 510px; }
-        .card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-container { perspective: 1200px; width: 350px; height: 510px; cursor: pointer; }
+        .card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
         .card-inner.flipped { transform: rotateY(180deg); }
-        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; box-shadow: 0 20px 45px rgba(255, 0, 127, 0.2); overflow: hidden; }
+        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 20px; box-shadow: 0 20px 45px rgba(255, 0, 127, 0.25); overflow: hidden; }
         
-        .card-front {
-            background: #10101e; border: 2px solid #ff007f;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
+        .card-front { background: #10101e; border: 2px solid #ff007f; display: flex; flex-direction: column; justify-content: space-between; }
         .photo-frame-full { width: 100%; height: 78%; position: relative; overflow: hidden; border-bottom: 2px solid #ff007f; }
         .full-hani-img { width: 100%; height: 100%; object-fit: cover; }
-        .front-details-area {
-            height: 22%; display: flex; justify-content: center; align-items: center;
-            background: linear-gradient(to top, #141426, #090912); padding: 10px;
-        }
-        .fancy-hbd { font-family: 'Great Vibes', cursive; font-size: 40px; color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5); }
+        .front-details-area { height: 22%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(to top, #141426, #090912); padding: 5px; }
+        .fancy-hbd { font-family: 'Great Vibes', cursive; font-size: 38px; color: #ff007f; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5); }
+        .tap-hint { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
         
-        .card-back {
-            background: linear-gradient(145deg, #19002b, #05000f); border: 2px solid #7f00ff;
-            transform: rotateY(180deg); padding: 35px 25px; display: flex;
-            flex-direction: column; justify-content: space-between; align-items: center;
-        }
+        .card-back { background: linear-gradient(145deg, #19002b, #05000f); border: 2px solid #7f00ff; transform: rotateY(180deg); padding: 35px 25px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
         .final-msg { font-size: 15px; line-height: 1.7; color: #e0e0e0; text-align: center; font-style: italic; overflow-y: auto; padding-right: 5px; margin-top: 15px; }
         .from-shaishav { font-size: 24px; font-family: 'Great Vibes', cursive; color: #00f2ff; text-shadow: 0 0 8px rgba(0, 242, 255, 0.5); margin-top: 15px; }
     </style>
 </head>
 <body>
 
+    <!-- Local Audio file -->
     <audio id="bg-music" src="new-light.mp3" loop preload="auto"></audio>
 
-    <!-- GIF Background Layers pointing to your local files -->
-    <div id="gifs-layer" class="bg-gif-container">
-        <!-- Cat celebrating with cake gif -->
-        <img class="gif-element gif-cat" src="cat-celebrate.gif">
-        <!-- Funny birthday gifs -->
-        <img class="gif-element gif-funny1" src="funny-1.gif">
-        <img class="gif-element gif-funny2" src="funny-2.gif">
+    <!-- Interactive Audio Waves Bars Toggle -->
+    <div id="music-status" class="music-indicator">
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <span style="font-size: 11px; font-weight:600; color: #eee; margin-left: 2px;">Music Playing</span>
     </div>
+
+    <!-- Procedural Background Hearts Generator -->
+    <div id="hearts-container" class="hearts-bg"></div>
 
     <!-- SCREEN 1 -->
     <div id="screen1" class="screen active">
@@ -213,26 +212,29 @@
 
     <!-- SCREEN 5 -->
     <div id="screen5" class="screen">
-        <div class="card-container">
+        <!-- Interactive Click To Flip Container Cover -->
+        <div class="card-container" onclick="toggleCardFlip()">
             <div class="card-inner" id="gift-card">
                 
-                <!-- Front Frame with Full Frame Shape Photo -->
+                <!-- Front Frame Shape Photo -->
                 <div class="card-front">
                     <div class="photo-frame-full">
                         <img src="hani-photo.jpg" alt="Hani ❤️" class="full-hani-img" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500'">
                     </div>
                     <div class="front-details-area">
                         <div class="fancy-hbd">Happy Birthday Hani! 🌹</div>
+                        <div class="tap-hint">✨ Click Card to Open ✨</div>
                     </div>
                 </div>
 
-                <!-- Back Frame with Personal Custom Message -->
+                <!-- Back Frame Personal Custom Message -->
                 <div class="card-back">
                     <h3 style="color: #ff007f; font-size: 22px; font-weight: 600; border-bottom: 1px solid rgba(255,0,127,0.3); padding-bottom: 5px; width: 100%;">My Whole Heart ❤️</h3>
                     <p class="final-msg">
                         "Wishing the most wonderful person in my life an incredible birthday. You deserve all the happiness, laughter, and love in the world. Thank you for making every day special just by being you."
                     </p>
                     <div class="from-shaishav">Your Shaishav ✨</div>
+                    <div class="tap-hint" style="margin-top:10px;">✨ Click to Flip Back ✨</div>
                 </div>
 
             </div>
@@ -240,15 +242,30 @@
     </div>
 
     <script>
+        // Smooth Procedural Hearts Spawning Engine
+        function startHeartsGenerator() {
+            const container = document.getElementById('hearts-container');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 7000);
+            }, 450);
+        }
+
         function verifyPasscode() {
             const code = document.getElementById('password').value;
             if(code === "07062003") {
                 const music = document.getElementById('bg-music');
-                music.play().catch(e => console.log("Audio waiting", e));
+                music.play().then(() => {
+                    document.getElementById('music-status').style.display = 'flex';
+                }).catch(e => console.log("Audio waiting direct play interaction", e));
                 
-                // Instantly display local GIFs layer upon unlock
-                document.getElementById('gifs-layer').style.display = "block";
-
+                startHeartsGenerator();
                 navigateTo('screen1', 'screen2');
                 triggerTealScreenSequence();
             } else {
@@ -280,7 +297,12 @@
         function showScreen5() { 
             window.runFireworks = false; 
             navigateTo('screen4', 'screen5'); 
-            setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 2500); 
+            // Automatically flip open after 1.5 seconds to surprise her, then she can toggle click
+            setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 1500); 
+        }
+
+        function toggleCardFlip() {
+            document.getElementById('gift-card').classList.toggle('flipped');
         }
 
         // --- HUGE NEON ANIME FIREWORKS RIGGING ---
@@ -295,7 +317,7 @@
             class Particle {
                 constructor(x, y, color) {
                     this.x = x; this.y = y; this.color = color;
-                    this.radius = Math.random() * 10 + 6; // Massive chunky anime sparks
+                    this.radius = Math.random() * 10 + 6;
                     const speed = Math.random() * 12 + 5;
                     const angle = Math.random() * Math.PI * 2;
                     this.vx = Math.cos(angle) * speed; this.vy = Math.sin(angle) * speed;
@@ -304,7 +326,7 @@
                 render() {
                     ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = this.color;
-                    ctx.shadowBlur = 35; ctx.shadowColor = this.color; // Heavy neon bloom explosion
+                    ctx.shadowBlur = 35; ctx.shadowColor = this.color;
                     ctx.fill(); ctx.restore();
                 }
                 move() { this.x += this.vx; this.y += this.vy; this.vy += 0.065; this.alpha -= this.fade; }
