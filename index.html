@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Hani ❤️</title>
-    <!-- Premium Fonts Link -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -40,7 +39,7 @@
             display: flex;
         }
         
-        /* Animated Pulsing Buttons */
+        /* Animated Pulsing Buttons Fix */
         button {
             background: linear-gradient(45deg, #ff007f, #7f00ff);
             color: white;
@@ -56,6 +55,8 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             animation: pulseBtn 2s infinite ease-in-out;
+            display: inline-block;
+            z-index: 10;
         }
         @keyframes pulseBtn {
             0% { transform: scale(1); box-shadow: 0 0 15px #ff007f, 0 0 30px #7f00ff; }
@@ -153,14 +154,14 @@
             100% { transform: translateX(-50%) scale(1.1) skewX(3deg); }
         }
 
-        /* Screen 4: Anime Fireworks & Typewriter */
+        /* Screen 4: Anime Fireworks & Typewriter Customization */
         #screen4 { background: #010105; }
         #canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         .firework-overlay { position: relative; z-index: 2; }
         
         .typewriter-text {
             font-family: 'Great Vibes', cursive;
-            font-size: 56px;
+            font-size: 58px;
             color: #fff;
             text-shadow: 0 0 15px #ff007f, 0 0 35px #7f00ff;
             margin-bottom: 30px;
@@ -171,7 +172,7 @@
             margin: 0 auto 30px auto;
         }
         .start-typing {
-            animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
+            animation: typing 3.5s steps(20, end) forwards, blink 0.75s step-end infinite;
         }
         @keyframes typing {
             from { width: 0 }
@@ -182,12 +183,12 @@
             50% { border-color: #ff007f }
         }
 
-        /* Screen 5: Full Box Photo Grid Card */
+        /* Screen 5: Full Rectangle Box Photo Frame Setup */
         #screen5 { background: #06060a; }
         .card-container {
             perspective: 1200px;
             width: 350px;
-            height: 520px;
+            height: 530px;
             margin-top: 10px;
         }
         .card-inner {
@@ -206,7 +207,6 @@
             overflow: hidden;
         }
         
-        /* Front Side Cover Photo Style */
         .card-front {
             background: #10101e;
             border: 2px solid #ff007f;
@@ -216,7 +216,7 @@
         }
         .photo-frame-full {
             width: 100%;
-            height: 65%;
+            height: 68%;
             position: relative;
             overflow: hidden;
             border-bottom: 2px solid #ff007f;
@@ -227,7 +227,7 @@
             object-fit: cover;
         }
         .front-details-area {
-            height: 35%;
+            height: 32%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -237,26 +237,25 @@
         }
         .fancy-hbd {
             font-family: 'Great Vibes', cursive;
-            font-size: 36px;
+            font-size: 38px;
             color: #ff007f;
             text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
         }
         
-        /* Optional Mini Decoration Slots */
         .mini-decorations {
             display: flex;
             gap: 12px;
-            margin-top: 5px;
+            margin-top: 8px;
         }
         .decor-slot {
-            width: 40px; height: 40px;
+            width: 42px; height: 42px;
             border-radius: 8px;
             border: 1px dashed #7f00ff;
             background: rgba(255,255,255,0.02);
             object-fit: cover;
         }
 
-        /* Back Side Original Message */
+        /* Back Card Configuration */
         .card-back {
             background: linear-gradient(145deg, #19002b, #05000f);
             border: 2px solid #7f00ff;
@@ -278,7 +277,7 @@
             margin-top: 15px;
         }
         .from-shaishav {
-            font-size: 22px;
+            font-size: 24px;
             font-family: 'Great Vibes', cursive;
             color: #00f2ff;
             text-shadow: 0 0 8px rgba(0, 242, 255, 0.5);
@@ -288,7 +287,8 @@
 </head>
 <body>
 
-    <audio id="bg-music" src="new-light.mp3" loop></audio>
+    <!-- Background Music Holder -->
+    <audio id="bg-music" src="new-light.mp3" loop preload="auto"></audio>
 
     <!-- SCREEN 1 -->
     <div id="screen1" class="screen active">
@@ -317,7 +317,7 @@
         <button onclick="showScreen4()">Begin Magic</button>
     </div>
 
-    <!-- SCREEN 4: ANIME FIREWORKS -->
+    <!-- SCREEN 4 -->
     <div id="screen4" class="screen">
         <canvas id="canvas"></canvas>
         <div class="firework-overlay">
@@ -326,20 +326,18 @@
         </div>
     </div>
 
-    <!-- SCREEN 5: FULL COVER FLIP CARD WITH EXTRA PIC SLOTS -->
+    <!-- SCREEN 5 -->
     <div id="screen5" class="screen">
         <div class="card-container">
             <div class="card-inner" id="gift-card">
                 
-                <!-- FRONT: Pure full frame photo & Elegant Birthday Text -->
+                <!-- Front Frame with Full Rectangle Shape Photo -->
                 <div class="card-front">
                     <div class="photo-frame-full">
                         <img src="hani-photo.jpg" alt="Hani ❤️" class="full-hani-img" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500'">
                     </div>
                     <div class="front-details-area">
                         <div class="fancy-hbd">Happy Birthday Hani! 🌹</div>
-                        
-                        <!-- Extra Image Slots: Isme aap hbd-1.jpg, hbd-2.jpg upload karke add kar sakte ho -->
                         <div class="mini-decorations">
                             <img class="decor-slot" src="hbd-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=80'">
                             <img class="decor-slot" src="hbd-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=80'">
@@ -348,7 +346,7 @@
                     </div>
                 </div>
 
-                <!-- BACK: Exact Unchanged Personal Message -->
+                <!-- Back Frame with Personal Custom Message -->
                 <div class="card-back">
                     <h3 style="color: #ff007f; font-size: 22px; font-weight: 600; border-bottom: 1px solid rgba(255,0,127,0.3); padding-bottom: 5px; width: 100%;">My Whole Heart ❤️</h3>
                     <p class="final-msg">
@@ -365,8 +363,14 @@
         function verifyPasscode() {
             const code = document.getElementById('password').value;
             if(code === "07062003") {
+                // Guaranteed Music Trigger on interactions
                 const music = document.getElementById('bg-music');
-                music.play().catch(e => console.log("Audio waiting for trigger", e));
+                music.play().then(() => {
+                    console.log("Playback started successfully");
+                }).catch(e => {
+                    console.log("Audio waiting context", e);
+                });
+                
                 navigateTo('screen1', 'screen2');
                 triggerTealScreenSequence();
             } else {
@@ -391,7 +395,6 @@
         
         function showScreen4() { 
             navigateTo('screen3', 'screen4'); 
-            // Trigger Typewriter Effect when screen opens
             document.getElementById('typewriter').classList.add('start-typing');
             initAnimeFireworks(); 
         }
@@ -399,11 +402,10 @@
         function showScreen5() { 
             window.runFireworks = false; 
             navigateTo('screen4', 'screen5'); 
-            // Smooth automatic 3D Flip after 2.5 seconds
             setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 2500); 
         }
 
-        // --- ANIME STYLE FIREWORKS ENGINE ---
+        // --- ANIME FIREWORKS RIGGING ---
         window.runFireworks = false;
         function initAnimeFireworks() {
             const canvas = document.getElementById('canvas');
@@ -415,25 +417,24 @@
             class Particle {
                 constructor(x, y, color) {
                     this.x = x; this.y = y; this.color = color;
-                    this.radius = Math.random() * 3.5 + 2; // Bigger Anime Sparks
-                    const speed = Math.random() * 7 + 3;
+                    this.radius = Math.random() * 4 + 2; // Massive spark size
+                    const speed = Math.random() * 8 + 3;
                     const angle = Math.random() * Math.PI * 2;
                     this.vx = Math.cos(angle) * speed;
                     this.vy = Math.sin(angle) * speed;
                     this.alpha = 1;
-                    this.fade = Math.random() * 0.01 + 0.008; // Slower trail fade
+                    this.fade = Math.random() * 0.009 + 0.006;
                 }
                 render() {
                     ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                     ctx.fillStyle = this.color;
-                    // Glow effect for anime vibe
-                    ctx.shadowBlur = 10; ctx.shadowColor = this.color;
+                    ctx.shadowBlur = 12; ctx.shadowColor = this.color;
                     ctx.fill(); ctx.restore();
                 }
                 move() { 
                     this.x += this.vx; this.y += this.vy; 
-                    this.vy += 0.05; // Dramatic gravity fall
+                    this.vy += 0.055; // Anime styled gravity drag
                     this.alpha -= this.fade; 
                 }
             }
@@ -442,7 +443,7 @@
                 constructor() {
                     this.x = Math.random() * canvas.width; this.y = canvas.height;
                     this.tx = this.x; this.ty = Math.random() * (canvas.height * 0.45) + 50;
-                    this.vy = -(Math.random() * 5 + 8);
+                    this.vy = -(Math.random() * 6 + 8);
                     this.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
                     this.particles = []; this.exploded = false;
                 }
@@ -452,7 +453,7 @@
                 }
                 explode() {
                     this.exploded = true;
-                    for (let i = 0; i < 95; i++) { // Massive particle count
+                    for (let i = 0; i < 95; i++) {
                         this.particles.push(new Particle(this.x, this.y, this.color));
                     }
                 }
