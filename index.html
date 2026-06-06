@@ -187,15 +187,18 @@
 
     <div id="hearts-container" class="hearts-bg"></div>
 
+    <!-- SCREEN 1: Passcode -->
     <div id="screen1" class="screen active">
         <div id="passcode-box" class="login-card">
             <h2 style="margin-bottom: 25px; color: #ff007f; font-size: 20px; letter-spacing: 1px;">Enter Passcode ❤️</h2>
-            <input type="password" id="password" placeholder="••••" maxlength="8">
+            <!-- Password input type field -->
+            <input type="text" id="password" placeholder="07062003" maxlength="8">
             <br>
             <button class="pop-button" onclick="verifyPasscode()">Unlock Magic</button>
         </div>
     </div>
 
+    <!-- SCREEN 2: Waiting Surprise -->
     <div id="screen2" class="screen">
         <div class="glass-panel">
             <div class="waiting-text" id="dynamic-text">✨ There's a surprise waiting for you... ✨</div>
@@ -203,6 +206,7 @@
         </div>
     </div>
 
+    <!-- SCREEN 3: Cake 1 (Magic Cake Time) -->
     <div id="screen3" class="screen cake-screen-bg">
         <div class="neon-title">Magic Cake Time! ✨</div>
         <div class="cake-hint">🎂 Ready for the birthday celebration?</div>
@@ -212,6 +216,7 @@
         <button class="pop-button" onclick="showScreen4()">Begin Magic</button>
     </div>
 
+    <!-- SCREEN 4: Fireworks & Typewriter -->
     <div id="screen4" class="screen">
         <canvas id="canvas"></canvas>
         <div class="firework-overlay">
@@ -220,6 +225,7 @@
         </div>
     </div>
 
+    <!-- SCREEN 5: Cake 2 (Tap To Blow Candle) -->
     <div id="screen5" class="screen cake-screen-bg">
         <div class="neon-title">Make A Wish, Hani! ✨</div>
         <div class="cake-hint" id="blow-hint-text">💨 Tap the candle flame to blow it out!</div>
@@ -229,6 +235,7 @@
         <button id="cake-next-btn" class="pop-button initially-hidden-btn" onclick="showScreen6()">Open My Message ❤️</button>
     </div>
 
+    <!-- SCREEN 6: Flip Card Cover -->
     <div id="screen6" class="screen">
         <div class="card-container" onclick="toggleCardFlip()">
             <div class="card-inner" id="gift-card">
@@ -263,7 +270,8 @@
         }
 
         function verifyPasscode() {
-            const code = document.getElementById('password').value;
+            const code = document.getElementById('password').value.trim();
+            // EXACT hardcoded passcode verification rule
             if(code === "07062003") {
                 navigateTo('screen1', 'screen2');
                 
@@ -298,7 +306,7 @@
         }
         
         function showScreen5() { 
-            window.runFireworks = false; // Stop fireworks rendering
+            window.runFireworks = false; 
             navigateTo('screen4', 'screen5'); 
         }
         
@@ -380,12 +388,4 @@
                 explode() { this.exploded = true; for (let i = 0; i < 120; i++) { this.particles.push(new Particle(this.x, this.y, this.color)); } }
                 render() {
                     if (!this.exploded) { ctx.beginPath(); ctx.arc(this.x, this.y, 6, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); }
-                    else { this.particles.forEach(p => p.render()); }
-                }
-            }
-
-            let rockets = [];
-            function loop() {
-                if (!window.runFireworks) return;
-                ctx.fillStyle = 'rgba(1, 1, 5, 0.22)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                if (Math.random() < 0.065 && rockets.length < 4) { rockets.push(new
+                    else { this.particles.forEach(p => p.re
