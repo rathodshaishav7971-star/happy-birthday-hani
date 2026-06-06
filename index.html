@@ -63,15 +63,23 @@
         .music-bar:nth-child(3) { animation-delay: 0.4s; height: 10px; }
         @keyframes bounceMusic { 0% { transform: scaleY(0.3); } 100% { transform: scaleY(1.1); } }
 
+        /* Solid Visibility Transitions for Screens */
         .screen {
             display: none;
+            opacity: 0;
+            pointer-events: none;
             width: 100%; height: 100%;
             position: absolute; top: 0; left: 0;
             justify-content: center; align-items: center;
             flex-direction: column; text-align: center;
             padding: 20px; z-index: 5;
+            transition: opacity 0.5s ease-in-out;
         }
-        .active { display: flex !important; }
+        .active { 
+            display: flex !important; 
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
         
         /* Continuous Heavy Pulsing & Popping Animation */
         .pop-button {
@@ -170,10 +178,8 @@
 </head>
 <body>
 
-    <!-- Local Audio file -->
     <audio id="bg-music" src="new-light.mp3" loop preload="auto"></audio>
 
-    <!-- Audio Tracker Graphic UI -->
     <div id="music-status" class="music-indicator">
         <div class="music-bar"></div>
         <div class="music-bar"></div>
@@ -181,10 +187,8 @@
         <span style="font-size: 11px; font-weight:600; color: #eee; margin-left: 2px;">Music Playing</span>
     </div>
 
-    <!-- Background Hearts Generator Structure Container -->
     <div id="hearts-container" class="hearts-bg"></div>
 
-    <!-- SCREEN 1 -->
     <div id="screen1" class="screen active">
         <div id="passcode-box" class="login-card">
             <h2 style="margin-bottom: 25px; color: #ff007f; font-size: 20px; letter-spacing: 1px;">Enter Passcode ❤️</h2>
@@ -194,7 +198,6 @@
         </div>
     </div>
 
-    <!-- SCREEN 2 -->
     <div id="screen2" class="screen">
         <div class="glass-panel">
             <div class="waiting-text" id="dynamic-text">✨ There's a surprise waiting for you... ✨</div>
@@ -202,7 +205,6 @@
         </div>
     </div>
 
-    <!-- SCREEN 3 -->
     <div id="screen3" class="screen">
         <div class="neon-title">Magical Cake Time! ✨</div>
         <div class="cake-hint" id="blow-hint-text">💨 Tap the candle flame to blow it out!</div>
@@ -212,7 +214,6 @@
         <button id="cake-next-btn" class="pop-button" onclick="showScreen4()">Begin Magic</button>
     </div>
 
-    <!-- SCREEN 4 -->
     <div id="screen4" class="screen">
         <canvas id="canvas"></canvas>
         <div class="firework-overlay">
@@ -221,12 +222,10 @@
         </div>
     </div>
 
-    <!-- SCREEN 5 -->
     <div id="screen5" class="screen">
         <div class="card-container" onclick="toggleCardFlip()">
             <div class="card-inner" id="gift-card">
                 
-                <!-- Front Frame Shape Photo -->
                 <div class="card-front">
                     <div class="photo-frame-full">
                         <img src="hani-photo.jpg" alt="Hani ❤️" class="full-hani-img" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500'">
@@ -237,7 +236,6 @@
                     </div>
                 </div>
 
-                <!-- Back Frame Personal Custom Message -->
                 <div class="card-back">
                     <h3 style="color: #ff007f; font-size: 22px; font-weight: 600; border-bottom: 1px solid rgba(255,0,127,0.3); padding-bottom: 5px; width: 100%;">My Whole Heart ❤️</h3>
                     <p class="final-msg">
@@ -260,16 +258,16 @@
         function verifyPasscode() {
             const code = document.getElementById('password').value;
             if(code === "07062003") {
-                // First navigate securely to eliminate blocking bugs
+                // Instantly swap screen active flags
                 navigateTo('screen1', 'screen2');
                 
-                // Play music safely
+                // Play audio track safely
                 const music = document.getElementById('bg-music');
                 music.play().then(() => {
                     document.getElementById('music-status').style.display = 'flex';
-                }).catch(e => console.log("Audio waiting interaction catch", e));
+                }).catch(e => console.log("Audio awaiting interaction hook", e));
                 
-                // Initialize background loops safely after element renders
+                // Fire background triggers safely
                 setTimeout(() => {
                     startHeartsGenerator();
                     triggerTealScreenSequence();
@@ -384,4 +382,6 @@
                 if (!window.runFireworks) return;
                 ctx.fillStyle = 'rgba(1, 1, 5, 0.22)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
                 if (Math.random() < 0.065 && rockets.length < 4) { rockets.push(new BigRocket()); }
-                for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && ro
+                for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && rockets[i].particles.length === 0) { rockets.splice(i, 1); } }
+                requestAnimationFrame(loop);
+            
