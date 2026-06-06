@@ -23,70 +23,68 @@
             position: relative;
         }
         
-        /* Background Funny GIFs Layers */
+        /* Fixed & Visible Background Funny GIFs Layers */
         .bg-gif-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 0;
-            display: none; /* Only shows when screens unlock */
-            opacity: 0.35; /* Subtle transparent vibe so neon text stays readable */
+            z-index: 1; /* Keeping it visible but below text/cards */
+            display: none; 
+            opacity: 0.45; /* Clean visibility without covering text */
         }
         .gif-element {
             position: absolute;
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
-        /* Placing them nicely around the screens */
-        .gif-cat { top: 5%; left: 5%; width: 160px; height: 160px; }
-        .gif-funny1 { bottom: 8%; left: 6%; }
-        .gif-funny2 { top: 8%; right: 6%; }
+        /* Positions */
+        .gif-cat { top: 5%; left: 5%; width: 150px; height: 150px; }
+        .gif-funny1 { bottom: 8%; left: 5%; width: 130px; height: 130px; }
+        .gif-funny2 { top: 8%; right: 5%; width: 130px; height: 130px; }
 
         .screen {
             display: none;
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             text-align: center;
             padding: 20px;
-            transition: all 0.5s ease-in-out;
-            z-index: 2;
+            z-index: 5;
         }
         .active {
-            display: flex;
+            display: flex !important;
         }
         
-        button {
-            background: linear-gradient(45deg, #ff007f, #7f00ff);
-            color: white;
-            border: none;
-            padding: 15px 38px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 15px #ff007f, 0 0 30px #7f00ff;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 25px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            animation: pulseBtn 2s infinite ease-in-out;
-            display: inline-block;
+        /* Forced Pulsing & Popping Animation for Buttons */
+        .pop-button {
+            background: linear-gradient(45deg, #ff007f, #7f00ff) !important;
+            color: white !important;
+            border: none !important;
+            padding: 16px 40px !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            border-radius: 50px !important;
+            cursor: pointer !important;
+            box-shadow: 0 0 20px #ff007f, 0 0 40px #7f00ff !important;
+            margin-top: 30px !important;
+            letter-spacing: 1px !important;
+            text-transform: uppercase !important;
+            display: inline-block !important;
+            animation: ultimatePulse 1.5s infinite ease-in-out !important;
+            transform-origin: center !important;
         }
-        @keyframes pulseBtn {
-            0% { transform: scale(1); box-shadow: 0 0 15px #ff007f, 0 0 30px #7f00ff; }
-            50% { transform: scale(1.06); box-shadow: 0 0 25px #ff007f, 0 0 45px #7f00ff; }
-            100% { transform: scale(1); box-shadow: 0 0 15px #ff007f, 0 0 30px #7f00ff; }
+        @keyframes ultimatePulse {
+            0% { transform: scale(1); box-shadow: 0 0 20px #ff007f, 0 0 40px #7f00ff; }
+            50% { transform: scale(1.12); box-shadow: 0 0 35px #ff007f, 0 0 60px #7f00ff; }
+            100% { transform: scale(1); box-shadow: 0 0 20px #ff007f, 0 0 40px #7f00ff; }
         }
-        button:active { transform: scale(0.95) !important; }
+        .pop-button:active { transform: scale(0.92) !important; }
 
-        /* Screen Styles */
+        /* Screen Setups */
         #screen1 { background: #070714; }
         .login-card {
             background: rgba(255, 255, 255, 0.03);
@@ -110,7 +108,7 @@
             border-radius: 20px; max-width: 90%;
         }
         .waiting-text { font-size: 24px; font-weight: 600; text-shadow: 0 2px 12px rgba(0,0,0,0.2); }
-        .hidden-btn { display: none; opacity: 0; background: linear-gradient(45deg, #d400d4, #00d4d4); box-shadow: 0 0 20px #d400d4; transition: opacity 0.5s ease; }
+        .hidden-btn { display: none; opacity: 0; background: linear-gradient(45deg, #d400d4, #00d4d4) !important; box-shadow: 0 0 20px #d400d4 !important; transition: opacity 0.5s ease; }
 
         #screen3 { background: radial-gradient(circle, #20003c 0%, #0b001a 100%); }
         .neon-title { font-size: 38px; color: #00f2ff; text-shadow: 0 0 10px #00f2ff, 0 0 20px #7f00ff; font-weight: 700; margin-bottom: 20px; }
@@ -120,10 +118,11 @@
         .flame { width: 16px; height: 24px; background: #ffaa00; border-radius: 50% 50% 20% 20%; position: absolute; top: -24px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 15px #ffaa00, 0 0 30px #ff0000; animation: burn 0.1s infinite alternate; }
         @keyframes burn { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1.1) skewX(3deg); } }
 
-        /* Screen 4: Anime Fireworks */
+        /* Screen 4: Fireworks Base */
         #screen4 { background: #010105; }
-        #canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .firework-overlay { position: relative; z-index: 3; }
+        #canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; }
+        .firework-overlay { position: relative; z-index: 6; }
+        
         .typewriter-text {
             font-family: 'Great Vibes', cursive; font-size: 58px; color: #fff;
             text-shadow: 0 0 15px #ff007f, 0 0 35px #7f00ff; margin-bottom: 30px;
@@ -166,48 +165,57 @@
 
     <audio id="bg-music" src="new-light.mp3" loop preload="auto"></audio>
 
+    <!-- GIF Background Layers (Guaranteed Live fallbacks) -->
     <div id="gifs-layer" class="bg-gif-container">
-        <img class="gif-element gif-cat" src="cat-celebrate.gif" onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW90Z3Y0Z3Rndmt4NXp0eG95bXpxZnd0M3g1dzR4Z3Z0eWZ6bXFieSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cl2PsDEg80omBDkqcH/giphy.gif'">
-        <img class="gif-element gif-funny1" src="funny-1.gif" onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW90Z3Y0Z3Rndmt4NXp0eG95bXpxZnd0M3g1dzR4Z3Z0eWZ6bXFieSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/L36re0StwV51H6z7bY/giphy.gif'">
-        <img class="gif-element gif-funny2" src="funny-2.gif" onerror="this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW90Z3Y0Z3Rndmt4NXp0eG95bXpxZnd0M3g1dzR4Z3Z0eWZ6bXFieSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/8g70AdfwUvI26Uo2S0/giphy.gif'">
+        <!-- Cat celebrating with cake gif -->
+        <img class="gif-element gif-cat" src="cat-celebrate.gif" onerror="this.src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5bXh2Y3M0ZzZ3eHpkZm83MnA3Mm9yZHYwYXJwb2lrdDR6cHBwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cl2PsDEg80omBDkqcH/giphy.gif'">
+        <!-- Funny birthday gifs -->
+        <img class="gif-element gif-funny1" src="funny-1.gif" onerror="this.src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNndhN2l5aGs4ZXoydDFmNndvYm5kcWtlZXZ3azU5aTFrbjVmeHltMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/L36re0StwV51H6z7bY/giphy.gif'">
+        <img class="gif-element gif-funny2" src="funny-2.gif" onerror="this.src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXV5czQ1aHFlNjNidmthZmkycTNmczNodXN2YnVzcHoxMGo1bTBlMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/8g70AdfwUvI26Uo2S0/giphy.gif'">
     </div>
 
+    <!-- SCREEN 1 -->
     <div id="screen1" class="screen active">
         <div id="passcode-box" class="login-card">
             <h2 style="margin-bottom: 25px; color: #ff007f; font-size: 20px; letter-spacing: 1px;">Enter Passcode ❤️</h2>
             <input type="password" id="password" placeholder="••••" maxlength="8">
             <br>
-            <button onclick="verifyPasscode()">Unlock Magic</button>
+            <button class="pop-button" onclick="verifyPasscode()">Unlock Magic</button>
         </div>
     </div>
 
+    <!-- SCREEN 2 -->
     <div id="screen2" class="screen">
         <div class="glass-panel">
             <div class="waiting-text" id="dynamic-text">✨ There's a surprise waiting for you... ✨</div>
-            <button id="surprise-btn" class="hidden-btn" onclick="showScreen3()">See Your Surprise 🎁</button>
+            <button id="surprise-btn" class="pop-button hidden-btn" onclick="showScreen3()">See Your Surprise 🎁</button>
         </div>
     </div>
 
+    <!-- SCREEN 3 -->
     <div id="screen3" class="screen">
         <div class="neon-title">Magical Cake Time! ✨</div>
         <div class="neon-cake">
             <div class="candle"><div class="flame"></div></div>
         </div>
-        <button onclick="showScreen4()">Begin Magic</button>
+        <button class="pop-button" onclick="showScreen4()">Begin Magic</button>
     </div>
 
+    <!-- SCREEN 4 -->
     <div id="screen4" class="screen">
         <canvas id="canvas"></canvas>
         <div class="firework-overlay">
             <div id="typewriter" class="typewriter-text">Happy Birthday, Ma'am</div>
-            <button onclick="showScreen5()">Celebrate Our Love</button>
+            <button class="pop-button" onclick="showScreen5()">Celebrate Our Love</button>
         </div>
     </div>
 
+    <!-- SCREEN 5 -->
     <div id="screen5" class="screen">
         <div class="card-container">
             <div class="card-inner" id="gift-card">
                 
+                <!-- Front Frame with Full Frame Shape Photo -->
                 <div class="card-front">
                     <div class="photo-frame-full">
                         <img src="hani-photo.jpg" alt="Hani ❤️" class="full-hani-img" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500'">
@@ -217,6 +225,7 @@
                     </div>
                 </div>
 
+                <!-- Back Frame with Personal Custom Message -->
                 <div class="card-back">
                     <h3 style="color: #ff007f; font-size: 22px; font-weight: 600; border-bottom: 1px solid rgba(255,0,127,0.3); padding-bottom: 5px; width: 100%;">My Whole Heart ❤️</h3>
                     <p class="final-msg">
@@ -234,9 +243,9 @@
             const code = document.getElementById('password').value;
             if(code === "07062003") {
                 const music = document.getElementById('bg-music');
-                music.play().catch(e => console.log("Audio trigger waiting", e));
+                music.play().catch(e => console.log("Audio waiting", e));
                 
-                // Show GIFs in background as soon as unlocked
+                // Show GIFs in background instantly
                 document.getElementById('gifs-layer').style.display = "block";
 
                 navigateTo('screen1', 'screen2');
@@ -273,7 +282,7 @@
             setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 2500); 
         }
 
-        // --- ANIME FIREWORKS RIGGING ---
+        // --- MASSIVE ANIME FIREWORKS RIGGING ---
         window.runFireworks = false;
         function initAnimeFireworks() {
             const canvas = document.getElementById('canvas');
@@ -285,34 +294,35 @@
             class Particle {
                 constructor(x, y, color) {
                     this.x = x; this.y = y; this.color = color;
-                    this.radius = Math.random() * 4 + 2; 
-                    const speed = Math.random() * 8 + 3;
+                    this.radius = Math.random() * 8 + 5; // Huge Anime Sparks
+                    const speed = Math.random() * 10 + 4;
                     const angle = Math.random() * Math.PI * 2;
                     this.vx = Math.cos(angle) * speed; this.vy = Math.sin(angle) * speed;
-                    this.alpha = 1; this.fade = Math.random() * 0.009 + 0.006;
+                    this.alpha = 1; this.fade = Math.random() * 0.008 + 0.005;
                 }
                 render() {
                     ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = this.color;
-                    ctx.shadowBlur = 12; ctx.shadowColor = this.color; ctx.fill(); ctx.restore();
+                    ctx.shadowBlur = 25; ctx.shadowColor = this.color; // Intense Glow Effect
+                    ctx.fill(); ctx.restore();
                 }
-                move() { this.x += this.vx; this.y += this.vy; this.vy += 0.055; this.alpha -= this.fade; }
+                move() { this.x += this.vx; this.y += this.vy; this.vy += 0.06; this.alpha -= this.fade; }
             }
 
             class BigRocket {
                 constructor() {
                     this.x = Math.random() * canvas.width; this.y = canvas.height;
                     this.tx = this.x; this.ty = Math.random() * (canvas.height * 0.45) + 50;
-                    this.vy = -(Math.random() * 6 + 8); this.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
+                    this.vy = -(Math.random() * 6 + 9); this.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
                     this.particles = []; this.exploded = false;
                 }
                 move() {
                     if (!this.exploded) { this.y += this.vy; if (this.y <= this.ty) this.explode(); }
                     else { for (let i = this.particles.length - 1; i >= 0; i--) { this.particles[i].move(); if (this.particles[i].alpha <= 0) this.particles.splice(i, 1); } }
                 }
-                explode() { this.exploded = true; for (let i = 0; i < 95; i++) { this.particles.push(new Particle(this.x, this.y, this.color)); } }
+                explode() { this.exploded = true; for (let i = 0; i < 110; i++) { this.particles.push(new Particle(this.x, this.y, this.color)); } }
                 render() {
-                    if (!this.exploded) { ctx.beginPath(); ctx.arc(this.x, this.y, 4, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); }
+                    if (!this.exploded) { ctx.beginPath(); ctx.arc(this.x, this.y, 5, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); }
                     else { this.particles.forEach(p => p.render()); }
                 }
             }
@@ -320,8 +330,8 @@
             let rockets = [];
             function loop() {
                 if (!window.runFireworks) return;
-                ctx.fillStyle = 'rgba(1, 1, 5, 0.25)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                if (Math.random() < 0.05 && rockets.length < 4) { rockets.push(new BigRocket()); }
+                ctx.fillStyle = 'rgba(1, 1, 5, 0.2)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                if (Math.random() < 0.06 && rockets.length < 4) { rockets.push(new BigRocket()); }
                 for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && rockets[i].particles.length === 0) { rockets.splice(i, 1); } }
                 requestAnimationFrame(loop);
             }
