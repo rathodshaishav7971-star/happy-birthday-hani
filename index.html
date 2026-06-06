@@ -23,24 +23,25 @@
             position: relative;
         }
         
-        /* Fixed & Visible Background Funny GIFs Layers */
+        /* Fixed Background Funny GIFs Layers - Loading your custom files */
         .bg-gif-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 1; /* Keeping it visible but below text/cards */
+            z-index: 1;
             display: none; 
-            opacity: 0.45; /* Clean visibility without covering text */
+            opacity: 0.55; /* Solid visibility so they look funny and clear */
         }
         .gif-element {
             position: absolute;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            object-fit: contain;
         }
-        /* Positions */
-        .gif-cat { top: 5%; left: 5%; width: 150px; height: 150px; }
-        .gif-funny1 { bottom: 8%; left: 5%; width: 130px; height: 130px; }
-        .gif-funny2 { top: 8%; right: 5%; width: 130px; height: 130px; }
+        /* Strict Screen Placements for your custom GIFs */
+        .gif-cat { top: 8%; left: 6%; width: 160px; height: 160px; }
+        .gif-funny1 { bottom: 10%; left: 6%; width: 140px; height: 140px; }
+        .gif-funny2 { top: 10%; right: 6%; width: 140px; height: 140px; }
 
         .screen {
             display: none;
@@ -59,32 +60,32 @@
             display: flex !important;
         }
         
-        /* Forced Pulsing & Popping Animation for Buttons */
+        /* Continuous Heavy Pulsing & Popping Animation for Buttons */
         .pop-button {
             background: linear-gradient(45deg, #ff007f, #7f00ff) !important;
             color: white !important;
             border: none !important;
-            padding: 16px 40px !important;
+            padding: 16px 42px !important;
             font-size: 16px !important;
             font-weight: 700 !important;
             border-radius: 50px !important;
             cursor: pointer !important;
-            box-shadow: 0 0 20px #ff007f, 0 0 40px #7f00ff !important;
+            box-shadow: 0 0 25px #ff007f, 0 0 50px #7f00ff !important;
             margin-top: 30px !important;
             letter-spacing: 1px !important;
             text-transform: uppercase !important;
             display: inline-block !important;
-            animation: ultimatePulse 1.5s infinite ease-in-out !important;
+            animation: ultimatePulse 1.2s infinite ease-in-out !important; /* Faster popping speed */
             transform-origin: center !important;
         }
         @keyframes ultimatePulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px #ff007f, 0 0 40px #7f00ff; }
-            50% { transform: scale(1.12); box-shadow: 0 0 35px #ff007f, 0 0 60px #7f00ff; }
-            100% { transform: scale(1); box-shadow: 0 0 20px #ff007f, 0 0 40px #7f00ff; }
+            0% { transform: scale(1); box-shadow: 0 0 25px #ff007f, 0 0 50px #7f00ff; }
+            50% { transform: scale(1.15); box-shadow: 0 0 40px #ff007f, 0 0 70px #7f00ff; } /* Massive pop out */
+            100% { transform: scale(1); box-shadow: 0 0 25px #ff007f, 0 0 50px #7f00ff; }
         }
         .pop-button:active { transform: scale(0.92) !important; }
 
-        /* Screen Setups */
+        /* Screens Styling */
         #screen1 { background: #070714; }
         .login-card {
             background: rgba(255, 255, 255, 0.03);
@@ -108,7 +109,7 @@
             border-radius: 20px; max-width: 90%;
         }
         .waiting-text { font-size: 24px; font-weight: 600; text-shadow: 0 2px 12px rgba(0,0,0,0.2); }
-        .hidden-btn { display: none; opacity: 0; background: linear-gradient(45deg, #d400d4, #00d4d4) !important; box-shadow: 0 0 20px #d400d4 !important; transition: opacity 0.5s ease; }
+        .hidden-btn { display: none; opacity: 0; background: linear-gradient(45deg, #d400d4, #00d4d4) !important; box-shadow: 0 0 25px #d400d4 !important; transition: opacity 0.5s ease; }
 
         #screen3 { background: radial-gradient(circle, #20003c 0%, #0b001a 100%); }
         .neon-title { font-size: 38px; color: #00f2ff; text-shadow: 0 0 10px #00f2ff, 0 0 20px #7f00ff; font-weight: 700; margin-bottom: 20px; }
@@ -118,7 +119,7 @@
         .flame { width: 16px; height: 24px; background: #ffaa00; border-radius: 50% 50% 20% 20%; position: absolute; top: -24px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 15px #ffaa00, 0 0 30px #ff0000; animation: burn 0.1s infinite alternate; }
         @keyframes burn { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1.1) skewX(3deg); } }
 
-        /* Screen 4: Fireworks Base */
+        /* Screen 4: Anime Fireworks */
         #screen4 { background: #010105; }
         #canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; }
         .firework-overlay { position: relative; z-index: 6; }
@@ -133,7 +134,7 @@
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #ff007f } }
 
-        /* Screen 5: Clean Full Frame Rectangle Card Cover */
+        /* Screen 5: Clean Full Frame Card Cover */
         #screen5 { background: #06060a; }
         .card-container { perspective: 1200px; width: 350px; height: 510px; }
         .card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -165,13 +166,13 @@
 
     <audio id="bg-music" src="new-light.mp3" loop preload="auto"></audio>
 
-    <!-- GIF Background Layers (Guaranteed Live fallbacks) -->
+    <!-- GIF Background Layers pointing to your local files -->
     <div id="gifs-layer" class="bg-gif-container">
         <!-- Cat celebrating with cake gif -->
-        <img class="gif-element gif-cat" src="cat-celebrate.gif" onerror="this.src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5bXh2Y3M0ZzZ3eHpkZm83MnA3Mm9yZHYwYXJwb2lrdDR6cHBwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cl2PsDEg80omBDkqcH/giphy.gif'">
+        <img class="gif-element gif-cat" src="cat-celebrate.gif">
         <!-- Funny birthday gifs -->
-        <img class="gif-element gif-funny1" src="funny-1.gif" onerror="this.src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNndhN2l5aGs4ZXoydDFmNndvYm5kcWtlZXZ3azU5aTFrbjVmeHltMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/L36re0StwV51H6z7bY/giphy.gif'">
-        <img class="gif-element gif-funny2" src="funny-2.gif" onerror="this.src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXV5czQ1aHFlNjNidmthZmkycTNmczNodXN2YnVzcHoxMGo1bTBlMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/8g70AdfwUvI26Uo2S0/giphy.gif'">
+        <img class="gif-element gif-funny1" src="funny-1.gif">
+        <img class="gif-element gif-funny2" src="funny-2.gif">
     </div>
 
     <!-- SCREEN 1 -->
@@ -245,7 +246,7 @@
                 const music = document.getElementById('bg-music');
                 music.play().catch(e => console.log("Audio waiting", e));
                 
-                // Show GIFs in background instantly
+                // Instantly display local GIFs layer upon unlock
                 document.getElementById('gifs-layer').style.display = "block";
 
                 navigateTo('screen1', 'screen2');
@@ -282,7 +283,7 @@
             setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 2500); 
         }
 
-        // --- MASSIVE ANIME FIREWORKS RIGGING ---
+        // --- HUGE NEON ANIME FIREWORKS RIGGING ---
         window.runFireworks = false;
         function initAnimeFireworks() {
             const canvas = document.getElementById('canvas');
@@ -294,35 +295,35 @@
             class Particle {
                 constructor(x, y, color) {
                     this.x = x; this.y = y; this.color = color;
-                    this.radius = Math.random() * 8 + 5; // Huge Anime Sparks
-                    const speed = Math.random() * 10 + 4;
+                    this.radius = Math.random() * 10 + 6; // Massive chunky anime sparks
+                    const speed = Math.random() * 12 + 5;
                     const angle = Math.random() * Math.PI * 2;
                     this.vx = Math.cos(angle) * speed; this.vy = Math.sin(angle) * speed;
-                    this.alpha = 1; this.fade = Math.random() * 0.008 + 0.005;
+                    this.alpha = 1; this.fade = Math.random() * 0.007 + 0.004;
                 }
                 render() {
                     ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = this.color;
-                    ctx.shadowBlur = 25; ctx.shadowColor = this.color; // Intense Glow Effect
+                    ctx.shadowBlur = 35; ctx.shadowColor = this.color; // Heavy neon bloom explosion
                     ctx.fill(); ctx.restore();
                 }
-                move() { this.x += this.vx; this.y += this.vy; this.vy += 0.06; this.alpha -= this.fade; }
+                move() { this.x += this.vx; this.y += this.vy; this.vy += 0.065; this.alpha -= this.fade; }
             }
 
             class BigRocket {
                 constructor() {
                     this.x = Math.random() * canvas.width; this.y = canvas.height;
                     this.tx = this.x; this.ty = Math.random() * (canvas.height * 0.45) + 50;
-                    this.vy = -(Math.random() * 6 + 9); this.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
+                    this.vy = -(Math.random() * 7 + 10); this.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
                     this.particles = []; this.exploded = false;
                 }
                 move() {
                     if (!this.exploded) { this.y += this.vy; if (this.y <= this.ty) this.explode(); }
                     else { for (let i = this.particles.length - 1; i >= 0; i--) { this.particles[i].move(); if (this.particles[i].alpha <= 0) this.particles.splice(i, 1); } }
                 }
-                explode() { this.exploded = true; for (let i = 0; i < 110; i++) { this.particles.push(new Particle(this.x, this.y, this.color)); } }
+                explode() { this.exploded = true; for (let i = 0; i < 120; i++) { this.particles.push(new Particle(this.x, this.y, this.color)); } }
                 render() {
-                    if (!this.exploded) { ctx.beginPath(); ctx.arc(this.x, this.y, 5, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); }
+                    if (!this.exploded) { ctx.beginPath(); ctx.arc(this.x, this.y, 6, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill(); }
                     else { this.particles.forEach(p => p.render()); }
                 }
             }
@@ -330,8 +331,8 @@
             let rockets = [];
             function loop() {
                 if (!window.runFireworks) return;
-                ctx.fillStyle = 'rgba(1, 1, 5, 0.2)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                if (Math.random() < 0.06 && rockets.length < 4) { rockets.push(new BigRocket()); }
+                ctx.fillStyle = 'rgba(1, 1, 5, 0.22)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                if (Math.random() < 0.065 && rockets.length < 4) { rockets.push(new BigRocket()); }
                 for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && rockets[i].particles.length === 0) { rockets.splice(i, 1); } }
                 requestAnimationFrame(loop);
             }
