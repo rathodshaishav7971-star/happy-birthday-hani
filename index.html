@@ -202,15 +202,13 @@
         </div>
     </div>
 
-    <!-- SCREEN 3 (With Fixed Tap to Blow Candle Feature) -->
+    <!-- SCREEN 3 -->
     <div id="screen3" class="screen">
         <div class="neon-title">Magical Cake Time! ✨</div>
         <div class="cake-hint" id="blow-hint-text">💨 Tap the candle flame to blow it out!</div>
-        <!-- Clicking the cake setup triggers the blow out trigger -->
         <div class="neon-cake" onclick="blowCandleFlame()">
             <div class="candle"><div id="cake-flame" class="flame"></div></div>
         </div>
-        <!-- Appears strictly after blowing the candle out -->
         <button id="cake-next-btn" class="pop-button" onclick="showScreen4()">Begin Magic</button>
     </div>
 
@@ -254,40 +252,31 @@
     </div>
 
     <script>
-        // Smooth Hearts Spawning Engine
-        function startHeartsGenerator() {
-            const container = document.getElementById('hearts-container');
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('floating-heart');
-                heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
-                heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
-                container.appendChild(heart);
-                setTimeout(() => heart.remove(), 7000);
-            }, 450);
+        function navigateTo(hide, show) {
+            document.getElementById(hide).classList.remove('active');
+            document.getElementById(show).classList.add('active');
         }
 
         function verifyPasscode() {
             const code = document.getElementById('password').value;
             if(code === "07062003") {
+                // First navigate securely to eliminate blocking bugs
+                navigateTo('screen1', 'screen2');
+                
+                // Play music safely
                 const music = document.getElementById('bg-music');
                 music.play().then(() => {
                     document.getElementById('music-status').style.display = 'flex';
-                }).catch(e => console.log("Audio awaiting interaction", e));
+                }).catch(e => console.log("Audio waiting interaction catch", e));
                 
-                startHeartsGenerator();
-                navigateTo('screen1', 'screen2');
-                triggerTealScreenSequence();
+                // Initialize background loops safely after element renders
+                setTimeout(() => {
+                    startHeartsGenerator();
+                    triggerTealScreenSequence();
+                }, 50);
             } else {
                 alert("Incorrect passcode! Try again, beautiful. ❤️");
             }
-        }
-
-        function navigateTo(hide, show) {
-            document.getElementById(hide).classList.remove('active');
-            document.getElementById(show).classList.add('active');
         }
 
         function triggerTealScreenSequence() {
@@ -300,18 +289,15 @@
 
         function showScreen3() { navigateTo('screen2', 'screen3'); }
         
-        // Dynamic Tap to Blow Candle Logic Engine
         function blowCandleFlame() {
             const flame = document.getElementById('cake-flame');
             const hint = document.getElementById('blow-hint-text');
             const nextBtn = document.getElementById('cake-next-btn');
             
-            // Add visibility modification classes
             flame.classList.add('blown-out');
             hint.innerHTML = "🎉 Yayy! You blew it out! ❤️";
             hint.style.color = "#00f2ff";
             
-            // Pulse the next pop button to look flashy
             nextBtn.style.display = "inline-block";
             setTimeout(() => nextBtn.style.opacity = 1, 150);
         }
@@ -332,7 +318,23 @@
             document.getElementById('gift-card').classList.toggle('flipped');
         }
 
-        // --- HUGE NEON ANIME FIREWORKS RIGGING ---
+        // Hearts Spawning Loop Engine
+        function startHeartsGenerator() {
+            const container = document.getElementById('hearts-container');
+            if(!container) return;
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('floating-heart');
+                heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 7000);
+            }, 450);
+        }
+
+        // --- FIREWORKS RIGGING ---
         window.runFireworks = false;
         function initAnimeFireworks() {
             const canvas = document.getElementById('canvas');
@@ -382,4 +384,4 @@
                 if (!window.runFireworks) return;
                 ctx.fillStyle = 'rgba(1, 1, 5, 0.22)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
                 if (Math.random() < 0.065 && rockets.length < 4) { rockets.push(new BigRocket()); }
-                for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets
+                for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && ro
