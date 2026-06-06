@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Hani ❤️</title>
+    <!-- Premium Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         body {
-            background-color: #0d0d0d;
+            background-color: #05050a;
             color: #fff;
             height: 100vh;
             display: flex;
@@ -38,14 +40,14 @@
             display: flex;
         }
         
-        /* Neon Button Styling matching Screenshots */
+        /* Animated Pulsing Buttons */
         button {
             background: linear-gradient(45deg, #ff007f, #7f00ff);
             color: white;
             border: none;
-            padding: 14px 35px;
+            padding: 15px 38px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 0 15px #ff007f, 0 0 30px #7f00ff;
@@ -53,56 +55,56 @@
             margin-top: 25px;
             letter-spacing: 1px;
             text-transform: uppercase;
+            animation: pulseBtn 2s infinite ease-in-out;
+        }
+        @keyframes pulseBtn {
+            0% { transform: scale(1); box-shadow: 0 0 15px #ff007f, 0 0 30px #7f00ff; }
+            50% { transform: scale(1.06); box-shadow: 0 0 25px #ff007f, 0 0 45px #7f00ff; }
+            100% { transform: scale(1); box-shadow: 0 0 15px #ff007f, 0 0 30px #7f00ff; }
         }
         button:active {
-            transform: scale(0.95);
+            transform: scale(0.95) !important;
         }
 
-        /* Screen 1: Passcode Box */
-        #screen1 {
-            background: #0a0a16;
-        }
+        /* Screen 1 */
+        #screen1 { background: #070714; }
         .login-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             padding: 40px 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border-radius: 24px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
         }
         #passcode-box input {
-            padding: 12px;
-            font-size: 22px;
-            border-radius: 10px;
+            padding: 14px;
+            font-size: 24px;
+            border-radius: 12px;
             border: 2px solid #ff007f;
             text-align: center;
-            background: #111;
+            background: #0d0d0d;
             color: white;
             margin-bottom: 15px;
             letter-spacing: 6px;
             width: 220px;
             outline: none;
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
         }
 
-        /* Screen 2: Surprise Waiting (Teal/Green Background as requested) */
-        #screen2 {
-            background: linear-gradient(135deg, #0575e6, #00f260);
-        }
+        /* Screen 2 */
+        #screen2 { background: linear-gradient(135deg, #0575e6, #00f260); }
         .glass-panel {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 30px 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            padding: 35px 40px;
+            border-radius: 20px;
             max-width: 90%;
         }
         .waiting-text {
-            font-size: 22px;
-            color: #fff;
+            font-size: 24px;
             font-weight: 600;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.2);
         }
         .hidden-btn {
             display: none;
@@ -112,22 +114,17 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Screen 3: Magical Cake Time (Neon Purple Theme) */
-        #screen3 {
-            background: radial-gradient(circle, #240046 0%, #10002b 100%);
-        }
+        /* Screen 3 */
+        #screen3 { background: radial-gradient(circle, #20003c 0%, #0b001a 100%); }
         .neon-title {
-            font-size: 36px;
+            font-size: 38px;
             color: #00f2ff;
             text-shadow: 0 0 10px #00f2ff, 0 0 20px #7f00ff;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 20px;
         }
-        
-        /* Stylized Neon Cake */
         .neon-cake {
-            width: 180px;
-            height: 130px;
+            width: 180px; height: 130px;
             background: #ff007f;
             border-radius: 15px 15px 0 0;
             position: relative;
@@ -135,156 +132,183 @@
             box-shadow: 0 0 25px #ff007f, inset 0 5px 0 #fff;
         }
         .neon-cake::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: -10px;
-            width: 200px; height: 15px;
-            background: #7f00ff;
-            border-radius: 10px;
-            box-shadow: 0 0 15px #7f00ff;
+            content: ''; position: absolute; bottom: 0; left: -10px;
+            width: 200px; height: 15px; background: #7f00ff;
+            border-radius: 10px; box-shadow: 0 0 15px #7f00ff;
         }
         .candle {
-            width: 12px;
-            height: 50px;
-            background: #fff;
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 5px 5px 0 0;
+            width: 12px; height: 50px; background: #fff;
+            position: absolute; top: -50px; left: 50%;
+            transform: translateX(-50%); border-radius: 5px 5px 0 0;
             box-shadow: 0 0 10px #fff;
-            cursor: pointer;
         }
         .flame {
-            width: 16px;
-            height: 24px;
-            background: #ffaa00;
-            border-radius: 50% 50% 20% 20%;
-            position: absolute;
-            top: -24px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px #ffaa00, 0 0 30px #ff0000;
+            width: 16px; height: 24px; background: #ffaa00;
+            border-radius: 50% 50% 20% 20%; position: absolute; top: -24px; left: 50%;
+            transform: translateX(-50%); box-shadow: 0 0 15px #ffaa00, 0 0 30px #ff0000;
             animation: burn 0.1s infinite alternate;
         }
         @keyframes burn {
             0% { transform: translateX(-50%) scale(1); }
-            100% { transform: translateX(-50%) scale(1.1) skewX(4deg); }
+            100% { transform: translateX(-50%) scale(1.1) skewX(3deg); }
         }
 
-        /* Screen 4: Fireworks */
-        #screen4 {
-            background: #020208;
-        }
-        #canvas {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-        }
-        .firework-overlay {
-            position: relative;
-            z-index: 2;
-        }
-        .firework-overlay h1 {
-            font-size: 42px;
+        /* Screen 4: Anime Fireworks & Typewriter */
+        #screen4 { background: #010105; }
+        #canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        .firework-overlay { position: relative; z-index: 2; }
+        
+        .typewriter-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 56px;
             color: #fff;
             text-shadow: 0 0 15px #ff007f, 0 0 35px #7f00ff;
             margin-bottom: 30px;
-            font-style: italic;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #ff007f;
+            width: 0;
+            margin: 0 auto 30px auto;
+        }
+        .start-typing {
+            animation: typing 3s steps(20, end) forwards, blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #ff007f }
         }
 
-        /* Screen 5: Auto Flipping 3D Card */
-        #screen5 {
-            background: #09090e;
-        }
+        /* Screen 5: Full Box Photo Grid Card */
+        #screen5 { background: #06060a; }
         .card-container {
-            perspective: 1000px;
-            width: 320px;
-            height: 450px;
-            margin-top: 20px;
+            perspective: 1200px;
+            width: 350px;
+            height: 520px;
+            margin-top: 10px;
         }
         .card-inner {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 1.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .card-inner.flipped {
-            transform: rotateY(180deg);
-        }
+        .card-inner.flipped { transform: rotateY(180deg); }
         .card-front, .card-back {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             backface-visibility: hidden;
             border-radius: 20px;
-            padding: 30px 20px;
+            box-shadow: 0 20px 45px rgba(255, 0, 127, 0.2);
+            overflow: hidden;
+        }
+        
+        /* Front Side Cover Photo Style */
+        .card-front {
+            background: #10101e;
+            border: 2px solid #ff007f;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            box-shadow: 0 15px 35px rgba(255, 0, 127, 0.15);
-        }
-        .card-front {
-            background: #141423;
-            border: 2px solid #ff007f;
-            justify-content: center;
-        }
-        .card-back {
-            background: linear-gradient(145deg, #1f0033, #0b001a);
-            border: 2px solid #7f00ff;
-            transform: rotateY(180deg);
             justify-content: space-between;
         }
-        .hani-pic {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 3px solid #ff007f;
-            object-fit: cover;
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
-            margin-bottom: 20px;
+        .photo-frame-full {
+            width: 100%;
+            height: 65%;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid #ff007f;
         }
-        .front-title {
-            font-size: 28px;
+        .full-hani-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .front-details-area {
+            height: 35%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to top, #141426, #090912);
+            padding: 10px;
+        }
+        .fancy-hbd {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
             color: #ff007f;
-            text-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
-            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+        }
+        
+        /* Optional Mini Decoration Slots */
+        .mini-decorations {
+            display: flex;
+            gap: 12px;
+            margin-top: 5px;
+        }
+        .decor-slot {
+            width: 40px; height: 40px;
+            border-radius: 8px;
+            border: 1px dashed #7f00ff;
+            background: rgba(255,255,255,0.02);
+            object-fit: cover;
+        }
+
+        /* Back Side Original Message */
+        .card-back {
+            background: linear-gradient(145deg, #19002b, #05000f);
+            border: 2px solid #7f00ff;
+            transform: rotateY(180deg);
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
         }
         .final-msg {
             font-size: 15px;
-            line-height: 1.6;
-            color: #f1f1f1;
+            line-height: 1.7;
+            color: #e0e0e0;
             text-align: center;
             font-style: italic;
+            overflow-y: auto;
+            padding-right: 5px;
+            margin-top: 15px;
         }
         .from-shaishav {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 22px;
+            font-family: 'Great Vibes', cursive;
             color: #00f2ff;
-            text-shadow: 0 0 8px rgba(0, 242, 255, 0.4);
+            text-shadow: 0 0 8px rgba(0, 242, 255, 0.5);
             margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
+    <audio id="bg-music" src="new-light.mp3" loop></audio>
+
+    <!-- SCREEN 1 -->
     <div id="screen1" class="screen active">
         <div id="passcode-box" class="login-card">
-            <h2 style="margin-bottom: 20px; color: #ff007f; font-size: 20px;">Enter Passcode ❤️</h2>
+            <h2 style="margin-bottom: 25px; color: #ff007f; font-size: 20px; letter-spacing: 1px;">Enter Passcode ❤️</h2>
             <input type="password" id="password" placeholder="••••" maxlength="8">
             <br>
             <button onclick="verifyPasscode()">Unlock Magic</button>
         </div>
     </div>
 
+    <!-- SCREEN 2 -->
     <div id="screen2" class="screen">
         <div class="glass-panel">
             <div class="waiting-text" id="dynamic-text">✨ There's a surprise waiting for you... ✨</div>
-            <button id="surprise-btn" class="hidden-btn" onclick="showScreen3()">Click here to see your surprise 🎁</button>
+            <button id="surprise-btn" class="hidden-btn" onclick="showScreen3()">See Your Surprise 🎁</button>
         </div>
     </div>
 
+    <!-- SCREEN 3 -->
     <div id="screen3" class="screen">
         <div class="neon-title">Magical Cake Time! ✨</div>
         <div class="neon-cake">
@@ -293,25 +317,40 @@
         <button onclick="showScreen4()">Begin Magic</button>
     </div>
 
+    <!-- SCREEN 4: ANIME FIREWORKS -->
     <div id="screen4" class="screen">
         <canvas id="canvas"></canvas>
         <div class="firework-overlay">
-            <h1>Happy Birthday, Ma'am</h1>
+            <div id="typewriter" class="typewriter-text">Happy Birthday, Ma'am</div>
             <button onclick="showScreen5()">Celebrate Our Love</button>
         </div>
     </div>
 
+    <!-- SCREEN 5: FULL COVER FLIP CARD WITH EXTRA PIC SLOTS -->
     <div id="screen5" class="screen">
         <div class="card-container">
             <div class="card-inner" id="gift-card">
                 
+                <!-- FRONT: Pure full frame photo & Elegant Birthday Text -->
                 <div class="card-front">
-                    <img src="hani-photo.jpg" alt="Hani ❤️" class="hani-pic" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300'">
-                    <div class="front-title">Happy Birthday, Hani! 🌹</div>
+                    <div class="photo-frame-full">
+                        <img src="hani-photo.jpg" alt="Hani ❤️" class="full-hani-img" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500'">
+                    </div>
+                    <div class="front-details-area">
+                        <div class="fancy-hbd">Happy Birthday Hani! 🌹</div>
+                        
+                        <!-- Extra Image Slots: Isme aap hbd-1.jpg, hbd-2.jpg upload karke add kar sakte ho -->
+                        <div class="mini-decorations">
+                            <img class="decor-slot" src="hbd-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=80'">
+                            <img class="decor-slot" src="hbd-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=80'">
+                            <img class="decor-slot" src="hbd-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=80'">
+                        </div>
+                    </div>
                 </div>
 
+                <!-- BACK: Exact Unchanged Personal Message -->
                 <div class="card-back">
-                    <h3 style="color: #ff007f; font-size: 22px;">My Whole Heart ❤️</h3>
+                    <h3 style="color: #ff007f; font-size: 22px; font-weight: 600; border-bottom: 1px solid rgba(255,0,127,0.3); padding-bottom: 5px; width: 100%;">My Whole Heart ❤️</h3>
                     <p class="final-msg">
                         "Wishing the most wonderful person in my life an incredible birthday. You deserve all the happiness, laughter, and love in the world. Thank you for making every day special just by being you."
                     </p>
@@ -323,10 +362,11 @@
     </div>
 
     <script>
-        // Passcode Validation
         function verifyPasscode() {
             const code = document.getElementById('password').value;
             if(code === "07062003") {
+                const music = document.getElementById('bg-music');
+                music.play().catch(e => console.log("Audio waiting for trigger", e));
                 navigateTo('screen1', 'screen2');
                 triggerTealScreenSequence();
             } else {
@@ -339,136 +379,100 @@
             document.getElementById(show).classList.add('active');
         }
 
-        // Screen 2 Animation flow logic
         function triggerTealScreenSequence() {
             setTimeout(() => {
                 const btn = document.getElementById('surprise-btn');
                 btn.style.display = "inline-block";
                 setTimeout(() => btn.style.opacity = 1, 100);
-            }, 2000); // Button appears after 2 seconds automatically
-        }
-
-        function showScreen3() {
-            navigateTo('screen2', 'screen3');
-        }
-
-        function showScreen4() {
-            navigateTo('screen3', 'screen4');
-            initFireworksLoop();
-        }
-
-        function showScreen5() {
-            window.runFireworks = false; // Stop canvas loop
-            navigateTo('screen4', 'screen5');
-            
-            // Automatic flipping trigger after 2 seconds
-            setTimeout(() => {
-                document.getElementById('gift-card').classList.add('flipped');
             }, 2000);
         }
 
-        // --- FIREWORKS GAME ENGINE ---
+        function showScreen3() { navigateTo('screen2', 'screen3'); }
+        
+        function showScreen4() { 
+            navigateTo('screen3', 'screen4'); 
+            // Trigger Typewriter Effect when screen opens
+            document.getElementById('typewriter').classList.add('start-typing');
+            initAnimeFireworks(); 
+        }
+        
+        function showScreen5() { 
+            window.runFireworks = false; 
+            navigateTo('screen4', 'screen5'); 
+            // Smooth automatic 3D Flip after 2.5 seconds
+            setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 2500); 
+        }
+
+        // --- ANIME STYLE FIREWORKS ENGINE ---
         window.runFireworks = false;
-        function initFireworksLoop() {
+        function initAnimeFireworks() {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
             window.runFireworks = true;
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize); resize();
 
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resize);
-            resize();
-
-            class Bit {
+            class Particle {
                 constructor(x, y, color) {
                     this.x = x; this.y = y; this.color = color;
-                    this.radius = Math.random() * 2 + 1;
-                    const speed = Math.random() * 6 + 2;
-                    const rad = Math.random() * Math.PI * 2;
-                    this.vx = Math.cos(rad) * speed;
-                    this.vy = Math.sin(rad) * speed;
+                    this.radius = Math.random() * 3.5 + 2; // Bigger Anime Sparks
+                    const speed = Math.random() * 7 + 3;
+                    const angle = Math.random() * Math.PI * 2;
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
                     this.alpha = 1;
-                    this.fade = Math.random() * 0.015 + 0.012;
+                    this.fade = Math.random() * 0.01 + 0.008; // Slower trail fade
                 }
                 render() {
-                    ctx.save();
-                    ctx.globalAlpha = this.alpha;
-                    ctx.beginPath();
+                    ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                     ctx.fillStyle = this.color;
-                    ctx.fill();
-                    ctx.restore();
+                    // Glow effect for anime vibe
+                    ctx.shadowBlur = 10; ctx.shadowColor = this.color;
+                    ctx.fill(); ctx.restore();
                 }
-                move() {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.vy += 0.04; // Gravity effect
-                    this.alpha -= this.fade;
+                move() { 
+                    this.x += this.vx; this.y += this.vy; 
+                    this.vy += 0.05; // Dramatic gravity fall
+                    this.alpha -= this.fade; 
                 }
             }
 
-            class Rocket {
+            class BigRocket {
                 constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = canvas.height;
-                    this.tx = this.x;
-                    this.ty = Math.random() * (canvas.height * 0.5);
-                    this.vy = -(Math.random() * 4 + 7);
-                    this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
-                    this.bits = [];
-                    this.exploded = false;
+                    this.x = Math.random() * canvas.width; this.y = canvas.height;
+                    this.tx = this.x; this.ty = Math.random() * (canvas.height * 0.45) + 50;
+                    this.vy = -(Math.random() * 5 + 8);
+                    this.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
+                    this.particles = []; this.exploded = false;
                 }
                 move() {
-                    if (!this.exploded) {
-                        this.y += this.vy;
-                        if (this.y <= this.ty) this.explode();
-                    } else {
-                        for (let i = this.bits.length - 1; i >= 0; i--) {
-                            this.bits[i].move();
-                            if (this.bits[i].alpha <= 0) this.bits.splice(i, 1);
-                        }
-                    }
+                    if (!this.exploded) { this.y += this.vy; if (this.y <= this.ty) this.explode(); }
+                    else { for (let i = this.particles.length - 1; i >= 0; i--) { this.particles[i].move(); if (this.particles[i].alpha <= 0) this.particles.splice(i, 1); } }
                 }
                 explode() {
                     this.exploded = true;
-                    for (let i = 0; i < 70; i++) {
-                        this.bits.push(new Bit(this.x, this.y, this.color));
+                    for (let i = 0; i < 95; i++) { // Massive particle count
+                        this.particles.push(new Particle(this.x, this.y, this.color));
                     }
                 }
                 render() {
-                    if (!this.exploded) {
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
-                        ctx.fillStyle = this.color;
-                        ctx.fill();
-                    } else {
-                        this.bits.forEach(b => b.render());
-                    }
+                    if (!this.exploded) { 
+                        ctx.beginPath(); ctx.arc(this.x, this.y, 4, 0, Math.PI * 2); 
+                        ctx.fillStyle = '#fff'; ctx.fill(); 
+                    } else { this.particles.forEach(p => p.render()); }
                 }
             }
 
             let rockets = [];
-            function frame() {
+            function loop() {
                 if (!window.runFireworks) return;
-                ctx.fillStyle = 'rgba(2, 2, 8, 0.2)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                if (Math.random() < 0.04 && rockets.length < 5) {
-                    rockets.push(new Rocket());
-                }
-
-                for (let i = rockets.length - 1; i >= 0; i--) {
-                    rockets[i].move();
-                    rockets[i].render();
-                    if (rockets[i].exploded && rockets[i].bits.length === 0) {
-                        rockets.splice(i, 1);
-                    }
-                }
-                requestAnimationFrame(frame);
+                ctx.fillStyle = 'rgba(1, 1, 5, 0.25)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+                if (Math.random() < 0.05 && rockets.length < 4) { rockets.push(new BigRocket()); }
+                for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && rockets[i].particles.length === 0) { rockets.splice(i, 1); } }
+                requestAnimationFrame(loop);
             }
-            frame();
+            loop();
         }
     </script>
 </body>
