@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fed6e3 0%, #a8c1ef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* --- STAGE 1: LOGIN SCREEN --- */
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+
+        .login-container h2 {
+            color: #ff6b8b;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ffccd5;
+            border-radius: 25px;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            background: #ff6b8b;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+            transition: 0.3s;
+        }
+
+        .login-container button:hover {
+            transform: translateY(-2px);
+            background: #ff477e;
+        }
+
+        .error-msg {
+            color: #ff4757;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* --- STAGE 2 & 3 CONTAINER --- */
+        .main-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* --- STAGE 2: THE CAKE --- */
+        .cake-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.8s ease;
+        }
+
+        .instruction {
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+            animation: pulse 1.5s infinite;
+        }
+
+        .cake {
+            position: relative;
+            width: 180px;
+            height: 120px;
+            background: #f4a261;
+            border-radius: 10px 10px 0 0;
+            box-shadow: inset 0 10px 0 #e76f51, 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .cake::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: #ffffff;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 40px;
+            background: linear-gradient(to right, #e63946, #f1faee);
+            border-radius: 3px 3px 0 0;
+            cursor: pointer;
+        }
+
+        .flame {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 20px;
+            background: #ffb703;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 10px #ffb703, 0 0 20px #fb8500;
+            animation: flicker 0.6s infinite alternate;
+        }
+
+        /* --- STAGE 3: THE GIFT CARD --- */
+        .card-container {
+            display: none;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white;
+            padding: 20px 20px 40px 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-radius: 4px;
+            max-width: 380px;
+            width: 85%;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .photo-frame {
+            width: 100%;
+            height: 280px;
+            background: #eaeaea;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-box h1 {
+            font-family: 'Georgia', serif;
+            color: #ff6b8b;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .message-box p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* --- CANVAS FOR FIREWORKS --- */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); }
+            100% { transform: translateX(-50%) scale(1.1) skewX(5deg); opacity: 0.9; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container" id="loginBox">
+        <h2>Enter Passcode ❤️</h2>
+        <input type="password" id="passwordInput" placeholder="Hint: Your birth date? DDMMYYYY">
+        <button onclick="checkPassword()">Unlock</button>
+        <p class="error-msg" id="errorMsg">Incorrect passcode, try again! 😉</p>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <canvas id="fireworksCanvas"></canvas>
+
+        <div class="cake-section" id="cakeSection">
+            <div class="instruction">Click the candle to blow it out! 🎂</div>
+            <div class="cake">
+                <div class="candle" onclick="blowCandle()">
+                    <div class="flame" id="candleFlame"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container" id="birthdayCard">
+            <div class="photo-frame">
+                <img src="your-photo.jpg" alt="Our Favorite Memory">
+            </div>
+            <div class="message-box">
+                <h1 id="cardTitle">Happy Birthday, Hani! ❤️</h1>
+                <p id="cardMessage">"To the most incredible person in my world. Thank you for bringing so much happiness, light, and love into my life. May this year bring you all the magic and smiles you deserve. I love you!"</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" src="new-light.mp3" loop></audio>
+
+    <script>
+        // --- CONFIGURATION ---
+        const CORRECT_PASSWORD = "07062003"; // Your updated secret passcode
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (input === CORRECT_PASSWORD) {
+                document.getElementById('loginBox').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loginBox').style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'flex';
+                    
+                    // Attempt to play music if user interacted
+                    const music = document.getElementById('bgMusic');
+                    music.play().catch(e => console.log("Audio play deferred until next click"));
+                }, 500);
+            } else {
+                errorMsg.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        function blowCandle() {
+            // Extinguish flame
+            document.getElementById('candleFlame').style.display = 'none';
+            
+            // Fade out the cake scene
+            setTimeout(() => {
+                document.getElementById('cakeSection').style.display = 'none';
+                
+                // Trigger fireworks and reveal card
+                initFireworks();
+                const card = document.getElementById('birthdayCard');
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 50);
+            }, 800);
+        }
+
+        // --- FIREWORKS ENGINE ---
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initFireworks() {
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            animateFireworks();
+            // Continuously launch fireworks
+            setInterval(launchFirework, 600);
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.radius = Math.random() * 3 + 1;
+                this.angle = Math.random() * Math.PI * 2;
+                this.speed = Math.random() * 5 + 2;
+                this.friction = 0.95;
+                this.gravity = 0.07;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.01;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+            update() {
+                this.speed *= this.friction;
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed + this.gravity;
+                this.alpha -= this.decay;
+            }
+        }
+
+        function launchFirework() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * (canvas.height * 0.6);
+            const colors = ['#ff477e', '#ff70a6', '#ff97b7', '#ffccd5', '#48cae4', '#90e0ef'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function animateFireworks() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles = particles.filter(p => p.alpha > 0);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateFireworks);
+        }
+    </script>
+</body>
+</html>
