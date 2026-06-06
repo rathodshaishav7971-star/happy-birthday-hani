@@ -3,137 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, My Love!</title>
+    <title>Happy Birthday Hani ❤️</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
-
         body {
-            background: linear-gradient(135deg, #fed6e3 0%, #a8c1ef 100%);
-            min-height: 100vh;
+            background-color: #0d0d0d;
+            color: #fff;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
         }
-
-        /* --- STAGE 1: LOGIN SCREEN --- */
-        .login-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 350px;
-            width: 90%;
-            transition: all 0.5s ease;
-            z-index: 10;
-        }
-
-        .login-container h2 {
-            color: #ff6b8b;
-            margin-bottom: 20px;
-        }
-
-        .login-container input {
+        .screen {
+            display: none;
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 2px solid #ffccd5;
-            border-radius: 25px;
-            outline: none;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             text-align: center;
-            font-size: 16px;
+            padding: 20px;
         }
-
-        .login-container button {
-            background: #ff6b8b;
+        .active {
+            display: flex;
+        }
+        
+        /* Buttons styling */
+        button {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
-            transition: 0.3s;
-        }
-
-        .login-container button:hover {
-            transform: translateY(-2px);
-            background: #ff477e;
-        }
-
-        .error-msg {
-            color: #ff4757;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
-        }
-
-        /* --- STAGE 2 & 3 CONTAINER --- */
-        .main-content {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            height: 100vh;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* --- STAGE 2: THE CAKE --- */
-        .cake-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: opacity 0.8s ease;
-        }
-
-        .instruction {
-            color: #fff;
-            font-size: 22px;
+            padding: 14px 28px;
+            font-size: 18px;
             font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 20px;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Screen 1: Passcode */
+        #passcode-box input {
+            padding: 12px;
+            font-size: 20px;
+            border-radius: 8px;
+            border: 2px solid #ff416c;
             text-align: center;
-            animation: pulse 1.5s infinite;
+            background: #222;
+            color: white;
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+            width: 200px;
         }
 
-        .cake {
+        /* Screen 2: Surprise Waiting */
+        .waiting-text {
+            font-size: 24px;
+            color: #ff416c;
+            font-weight: bold;
+            min-height: 40px;
+            transition: all 0.5s ease;
+        }
+        .hidden-btn {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Screen 3 & 5: Cake & Candles */
+        .cake-container {
             position: relative;
-            width: 180px;
+            width: 160px;
             height: 120px;
-            background: #f4a261;
-            border-radius: 10px 10px 0 0;
-            box-shadow: inset 0 10px 0 #e76f51, 0 10px 20px rgba(0,0,0,0.1);
+            background: #f190b7;
+            border-radius: 20px 20px 0 0;
+            margin: 40px 0;
+            box-shadow: 0 6px 0 #e56b9c;
         }
-
-        .cake::before {
+        .cake-container::before {
             content: '';
             position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 15px;
-            background: #ffffff;
+            top: 30px; left: 0; width: 100%; height: 20px;
+            background: #fff;
+            border-radius: 10px;
         }
-
         .candle {
             position: absolute;
             bottom: 120px;
             left: 50%;
             transform: translateX(-50%);
             width: 12px;
-            height: 40px;
-            background: linear-gradient(to right, #e63946, #f1faee);
+            height: 45px;
+            background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff416c 5px, #ff416c 10px);
             border-radius: 3px 3px 0 0;
             cursor: pointer;
         }
-
         .flame {
             position: absolute;
             top: -15px;
@@ -141,227 +118,352 @@
             transform: translateX(-50%);
             width: 14px;
             height: 20px;
-            background: #ffb703;
+            background: #ff9d00;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 10px #ffb703, 0 0 20px #fb8500;
-            animation: flicker 0.6s infinite alternate;
+            box-shadow: 0 0 10px #ff9d00, 0 0 20px #ff4b2b;
+            animation: flicker 0.1s infinite alternate;
         }
-
-        /* --- STAGE 3: THE GIFT CARD --- */
-        .card-container {
-            display: none;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            background: white;
-            padding: 20px 20px 40px 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border-radius: 4px;
-            max-width: 380px;
-            width: 85%;
-            text-align: center;
-            z-index: 5;
-        }
-
-        .photo-frame {
-            width: 100%;
-            height: 280px;
-            background: #eaeaea;
-            margin-bottom: 20px;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .message-box h1 {
-            font-family: 'Georgia', serif;
-            color: #ff6b8b;
-            font-size: 26px;
-            margin-bottom: 10px;
-        }
-
-        .message-box p {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.6;
-            font-style: italic;
-        }
-
-        /* --- CANVAS FOR FIREWORKS --- */
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        /* --- ANIMATIONS --- */
         @keyframes flicker {
             0% { transform: translateX(-50%) scale(1); }
-            100% { transform: translateX(-50%) scale(1.1) skewX(5deg); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.1) skewX(5deg); }
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+
+        /* Screen 4: Fireworks */
+        #screen4 {
+            background: radial-gradient(circle, #1a1a2e 0%, #020205 100%);
+        }
+        #fireworks-canvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .firework-content {
+            position: relative;
+            z-index: 2;
+        }
+        .firework-content h1 {
+            font-size: 38px;
+            color: #fff;
+            text-shadow: 0 0 15px #ff416c, 0 0 30px #ff4b2b;
+            margin-bottom: 25px;
+        }
+
+        /* Screen 5: Flip Card Container */
+        .flip-main {
+            perspective: 1000px;
+            width: 320px;
+            height: 450px;
+            display: none;
+            margin-top: 20px;
+        }
+        .flip-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+        .flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .card-front {
+            background: #1f1f2e;
+            border: 2px solid #ff416c;
+        }
+        .card-back {
+            background: linear-gradient(135deg, #1f1224, #34123a);
+            transform: rotateY(180deg);
+            border: 2px solid #ff4b2b;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+        .hani-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #ff416c;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(255, 65, 108, 0.3);
+        }
+        .love-message {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #fce4ec;
+            font-style: italic;
+            text-align: center;
+        }
+        .signature {
+            font-weight: bold;
+            font-size: 18px;
+            color: #ff416c;
+            margin-top: 10px;
+            text-shadow: 0 0 5px rgba(255,65,108,0.3);
         }
     </style>
 </head>
 <body>
 
-    <div class="login-container" id="loginBox">
-        <h2>Enter Passcode ❤️</h2>
-        <input type="password" id="passwordInput" placeholder="Hint: Your birth date? DDMMYYYY">
-        <button onclick="checkPassword()">Unlock</button>
-        <p class="error-msg" id="errorMsg">Incorrect passcode, try again! 😉</p>
+    <!-- SCREEN 1: LOGIN -->
+    <div id="screen1" class="screen active">
+        <div id="passcode-box">
+            <h2 style="margin-bottom: 20px; color: #ff416c;">Enter Passcode ❤️</h2>
+            <input type="password" id="password" placeholder="••••••••" maxlength="8">
+            <br>
+            <button onclick="checkPassword()">Unlock</button>
+        </div>
     </div>
 
-    <div class="main-content" id="mainContent">
-        <canvas id="fireworksCanvas"></canvas>
+    <!-- SCREEN 2: SURPRISE WAITING -->
+    <div id="screen2" class="screen">
+        <div class="waiting-text" id="dynamic-text">There's a surprise waiting for you...</div>
+        <button id="surprise-btn" class="hidden-btn" onclick="goToScreen3()">Click here to see your surprise</button>
+    </div>
 
-        <div class="cake-section" id="cakeSection">
-            <div class="instruction">Click the candle to blow it out! 🎂</div>
-            <div class="cake">
-                <div class="candle" onclick="blowCandle()">
-                    <div class="flame" id="candleFlame"></div>
+    <!-- SCREEN 3: MAGICAL CAKE -->
+    <div id="screen3" class="screen">
+        <h1 style="color: #ff416c; text-shadow: 0 0 10px rgba(255,65,108,0.3);">Magical Cake Time</h1>
+        <div class="cake-container">
+            <div class="candle"><div class="flame"></div></div>
+        </div>
+        <button onclick="goToScreen4()">Begin Magic</button>
+    </div>
+
+    <!-- SCREEN 4: FIREWORKS SURPRISE -->
+    <div id="screen4" class="screen">
+        <canvas id="fireworks-canvas"></canvas>
+        <div class="firework-content">
+            <h1>Happy Birthday Ma'am</h1>
+            <button onclick="goToScreen5()">Celebrate Our Love</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 5: FINAL BLOW & FLIP CARD -->
+    <div id="screen5" class="screen">
+        <h1 id="screen5-title" style="color: #ff416c; margin-bottom: 10px;">Tap on the candle to blow</h1>
+        
+        <!-- Interactive Cake on Front -->
+        <div class="cake-container" id="final-cake" style="margin-top: 10px;">
+            <div class="candle" id="final-candle" onclick="blowFinalCandle()"><div class="flame" id="final-flame"></div></div>
+        </div>
+
+        <!-- Hidden Flip Card that triggers after blowing -->
+        <div class="flip-main" id="flip-container">
+            <div class="flip-card" id="card-inner">
+                <!-- Card Front (Will instantly turn) -->
+                <div class="card-front">
+                    <h3>Happy Birthday!</h3>
+                </div>
+                <!-- Card Back (Main Message) -->
+                <div class="card-back">
+                    <h2 style="color: #ff416c; font-size: 22px;">Happy Birthday, Hani! ❤️</h2>
+                    <img src="hani-photo.jpg" alt="Hani ❤️" class="hani-img" onerror="this.src='https://placekitten.com/150/150'">
+                    <p class="love-message">
+                        "Wishing the most wonderful person in my life an incredible birthday. You deserve all the happiness, laughter, and love in the world. Thank you for making every day special just by being you."
+                    </p>
+                    <div class="signature">With love,<br>Your Shaishav</div>
                 </div>
             </div>
         </div>
-
-        <div class="card-container" id="birthdayCard">
-            <div class="photo-frame">
-                <img src="your-photo.jpg" alt="Our Favorite Memory">
-            </div>
-            <div class="message-box">
-                <h1 id="cardTitle">Happy Birthday, Hani! ❤️</h1>
-                <p id="cardMessage">"To the most incredible person in my world. Thank you for bringing so much happiness, light, and love into my life. May this year bring you all the magic and smiles you deserve. I love you!"</p>
-            </div>
-        </div>
     </div>
 
-    <audio id="bgMusic" src="new-light.mp3" loop></audio>
-
     <script>
-        // --- CONFIGURATION ---
-        const CORRECT_PASSWORD = "07062003"; // Your updated secret passcode
-
+        // Password verification
         function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            const errorMsg = document.getElementById('errorMsg');
-            
-            if (input === CORRECT_PASSWORD) {
-                document.getElementById('loginBox').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('loginBox').style.display = 'none';
-                    document.getElementById('mainContent').style.display = 'flex';
-                    
-                    // Attempt to play music if user interacted
-                    const music = document.getElementById('bgMusic');
-                    music.play().catch(e => console.log("Audio play deferred until next click"));
-                }, 500);
+            const input = document.getElementById('password').value;
+            if(input === "07062003") {
+                changeScreen('screen1', 'screen2');
+                startWaitingSequence();
             } else {
-                errorMsg.style.display = 'block';
-                document.getElementById('passwordInput').value = '';
+                alert("Wrong passcode! Try again baby. ❤️");
             }
         }
 
-        function blowCandle() {
-            // Extinguish flame
-            document.getElementById('candleFlame').style.display = 'none';
-            
-            // Fade out the cake scene
+        // Screen transition helper
+        function changeScreen(hideId, showId) {
+            document.getElementById(hideId).classList.remove('active');
+            document.getElementById(showId).classList.add('active');
+        }
+
+        // Screen 2 automatic transition logic
+        function startWaitingSequence() {
             setTimeout(() => {
-                document.getElementById('cakeSection').style.display = 'none';
+                const textEl = document.getElementById('dynamic-text');
+                textEl.style.opacity = 0;
                 
-                // Trigger fireworks and reveal card
-                initFireworks();
-                const card = document.getElementById('birthdayCard');
-                card.style.display = 'block';
                 setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'scale(1)';
-                }, 50);
+                    textEl.innerText = "Happy Birthday Ma'am";
+                    textEl.style.color = "#fff";
+                    textEl.style.fontSize = "32px";
+                    textEl.style.textShadow = "0 0 10px #ff416c";
+                    textEl.style.opacity = 1;
+                    
+                    // Show Button right after text changes
+                    const btn = document.getElementById('surprise-btn');
+                    btn.style.display = "inline-block";
+                    setTimeout(() => btn.style.opacity = 1, 100);
+                }, 500);
+                
+            }, 2500); // Wait 2.5 seconds before transforming
+        }
+
+        function goToScreen3() {
+            changeScreen('screen2', 'screen3');
+        }
+
+        function goToScreen4() {
+            changeScreen('screen3', 'screen4');
+            startFireworks();
+        }
+
+        function goToScreen5() {
+            // Stop fireworks loop when leaving
+            window.fireworksActive = false;
+            changeScreen('screen4', 'screen5');
+        }
+
+        // Final candle blowing and flipping mechanics
+        function blowFinalCandle() {
+            document.getElementById('final-flame').style.display = 'none';
+            document.getElementById('screen5-title').style.opacity = '0';
+            
+            setTimeout(() => {
+                document.getElementById('screen5-title').innerText = "Happy Birthday 🎉";
+                document.getElementById('screen5-title').style.opacity = '1';
+                
+                // Hide cake smoothly, setup flip element
+                document.getElementById('final-cake').style.display = 'none';
+                const flipMain = document.getElementById('flip-container');
+                flipMain.style.display = 'block';
+                
+                // Trigger 3D flip rotation
+                setTimeout(() => {
+                    document.getElementById('card-inner').classList.add('flipped');
+                }, 150);
             }, 800);
         }
 
-        // --- FIREWORKS ENGINE ---
-        const canvas = document.getElementById('fireworksCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
+        // --- FIREWORKS CANVAS ENGINE ---
+        window.fireworksActive = false;
+        function startFireworks() {
+            const canvas = document.getElementById('fireworks-canvas');
+            const ctx = canvas.getContext('2d');
+            window.fireworksActive = true;
 
-        function initFireworks() {
-            resizeCanvas();
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
             window.addEventListener('resize', resizeCanvas);
-            animateFireworks();
-            // Continuously launch fireworks
-            setInterval(launchFirework, 600);
-        }
+            resizeCanvas();
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+            class Particle {
+                constructor(x, y, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.color = color;
+                    this.radius = Math.random() * 2 + 1;
+                    const velocity = Math.random() * 5 + 2;
+                    const angle = Math.random() * Math.PI * 2;
+                    this.vx = Math.cos(angle) * velocity;
+                    this.vy = Math.sin(angle) * velocity;
+                    this.alpha = 1;
+                    this.decay = Math.random() * 0.015 + 0.015;
+                }
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy += 0.05; // gravity simulation
+                    this.alpha -= this.decay;
+                }
+            }
 
-        class Particle {
-            constructor(x, y, color) {
-                this.x = x;
-                this.y = y;
-                this.color = color;
-                this.radius = Math.random() * 3 + 1;
-                this.angle = Math.random() * Math.PI * 2;
-                this.speed = Math.random() * 5 + 2;
-                this.friction = 0.95;
-                this.gravity = 0.07;
-                this.alpha = 1;
-                this.decay = Math.random() * 0.015 + 0.01;
+            class Firework {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height;
+                    this.targetY = Math.random() * (canvas.height * 0.5);
+                    this.vy = -(Math.random() * 4 + 8);
+                    this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                    this.particles = [];
+                    this.exploded = false;
+                }
+                update() {
+                    if (!this.exploded) {
+                        this.y += this.vy;
+                        if (this.vy >= 0 || this.y <= this.targetY) {
+                            this.explode();
+                        }
+                    } else {
+                        for (let i = this.particles.length - 1; i >= 0; i--) {
+                            this.particles[i].update();
+                            if (this.particles[i].alpha <= 0) {
+                                this.particles.splice(i, 1);
+                            }
+                        }
+                    }
+                }
+                explode() {
+                    this.exploded = true;
+                    for (let i = 0; i < 60; i++) {
+                        this.particles.push(new Particle(this.x, this.y, this.color));
+                    }
+                }
+                draw() {
+                    if (!this.exploded) {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                    } else {
+                        this.particles.forEach(p => p.draw());
+                    }
+                }
             }
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                ctx.restore();
-            }
-            update() {
-                this.speed *= this.friction;
-                this.x += Math.cos(this.angle) * this.speed;
-                this.y += Math.sin(this.angle) * this.speed + this.gravity;
-                this.alpha -= this.decay;
-            }
-        }
 
-        function launchFirework() {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * (canvas.height * 0.6);
-            const colors = ['#ff477e', '#ff70a6', '#ff97b7', '#ffccd5', '#48cae4', '#90e0ef'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            for (let i = 0; i < 60; i++) {
-                particles.push(new Particle(x, y, color));
-            }
-        }
+            let fireworks = [];
+            function loop() {
+                if (!window.fireworksActive) return;
+                ctx.fillStyle = 'rgba(13, 13, 13, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        function animateFireworks() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles = particles.filter(p => p.alpha > 0);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateFireworks);
+                if (Math.random() < 0.05 && fireworks.length < 6) {
+                    fireworks.push(new Firework());
+                }
+
+                for (let i = fireworks.length - 1; i >= 0; i--) {
+                    fireworks[i].update();
+                    fireworks[i].draw();
+                    if (fireworks[i].exploded && fireworks[i].particles.length === 0) {
+                        fireworks.splice(i, 1);
+                    }
+                }
+                requestAnimationFrame(loop);
+            }
+            loop();
         }
     </script>
 </body>
