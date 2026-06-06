@@ -38,6 +38,7 @@
             display: flex;
         }
         
+        /* Neon Button Styling matching Screenshots */
         button {
             background: linear-gradient(45deg, #ff007f, #7f00ff);
             color: white;
@@ -57,6 +58,7 @@
             transform: scale(0.95);
         }
 
+        /* Screen 1: Passcode Box */
         #screen1 {
             background: #0a0a16;
         }
@@ -83,13 +85,14 @@
             box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
         }
 
+        /* Screen 2: Surprise Waiting (Teal/Green Background as requested) */
         #screen2 {
             background: linear-gradient(135deg, #0575e6, #00f260);
         }
         .glass-panel {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             padding: 30px 40px;
             border-radius: 15px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
@@ -109,6 +112,7 @@
             transition: opacity 0.5s ease;
         }
 
+        /* Screen 3: Magical Cake Time (Neon Purple Theme) */
         #screen3 {
             background: radial-gradient(circle, #240046 0%, #10002b 100%);
         }
@@ -120,6 +124,7 @@
             margin-bottom: 20px;
         }
         
+        /* Stylized Neon Cake */
         .neon-cake {
             width: 180px;
             height: 130px;
@@ -167,6 +172,7 @@
             100% { transform: translateX(-50%) scale(1.1) skewX(4deg); }
         }
 
+        /* Screen 4: Fireworks */
         #screen4 {
             background: #020208;
         }
@@ -187,13 +193,14 @@
             font-style: italic;
         }
 
+        /* Screen 5: Auto Flipping 3D Card */
         #screen5 {
             background: #09090e;
         }
         .card-container {
             perspective: 1000px;
-            width: 340px;
-            height: 480px;
+            width: 320px;
+            height: 450px;
             margin-top: 20px;
         }
         .card-inner {
@@ -230,13 +237,13 @@
             justify-content: space-between;
         }
         .hani-pic {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             border: 3px solid #ff007f;
             object-fit: cover;
             box-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         .front-title {
             font-size: 28px;
@@ -250,9 +257,6 @@
             color: #f1f1f1;
             text-align: center;
             font-style: italic;
-            overflow-y: auto;
-            max-height: 300px;
-            padding: 0 5px;
         }
         .from-shaishav {
             font-size: 20px;
@@ -265,10 +269,6 @@
 </head>
 <body>
 
-    <!-- BACKGROUND AUDIO ELEMENT -->
-    <audio id="bg-music" src="new-light.mp3" loop></audio>
-
-    <!-- SCREEN 1: PASSCODE -->
     <div id="screen1" class="screen active">
         <div id="passcode-box" class="login-card">
             <h2 style="margin-bottom: 20px; color: #ff007f; font-size: 20px;">Enter Passcode ❤️</h2>
@@ -278,7 +278,6 @@
         </div>
     </div>
 
-    <!-- SCREEN 2: SURPRISE WAITING -->
     <div id="screen2" class="screen">
         <div class="glass-panel">
             <div class="waiting-text" id="dynamic-text">✨ There's a surprise waiting for you... ✨</div>
@@ -286,7 +285,6 @@
         </div>
     </div>
 
-    <!-- SCREEN 3: MAGICAL CAKE TIME -->
     <div id="screen3" class="screen">
         <div class="neon-title">Magical Cake Time! ✨</div>
         <div class="neon-cake">
@@ -295,7 +293,6 @@
         <button onclick="showScreen4()">Begin Magic</button>
     </div>
 
-    <!-- SCREEN 4: FIREWORKS -->
     <div id="screen4" class="screen">
         <canvas id="canvas"></canvas>
         <div class="firework-overlay">
@@ -304,14 +301,15 @@
         </div>
     </div>
 
-    <!-- SCREEN 5: FLIP CARD -->
     <div id="screen5" class="screen">
         <div class="card-container">
             <div class="card-inner" id="gift-card">
+                
                 <div class="card-front">
                     <img src="hani-photo.jpg" alt="Hani ❤️" class="hani-pic" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=300'">
                     <div class="front-title">Happy Birthday, Hani! 🌹</div>
                 </div>
+
                 <div class="card-back">
                     <h3 style="color: #ff007f; font-size: 22px;">My Whole Heart ❤️</h3>
                     <p class="final-msg">
@@ -319,18 +317,16 @@
                     </p>
                     <div class="from-shaishav">Your Shaishav ✨</div>
                 </div>
+
             </div>
         </div>
     </div>
 
     <script>
+        // Passcode Validation
         function verifyPasscode() {
             const code = document.getElementById('password').value;
             if(code === "07062003") {
-                // Play music as soon as password is unlocked
-                const music = document.getElementById('bg-music');
-                music.play().catch(error => console.log("Audio play prevented: ", error));
-                
                 navigateTo('screen1', 'screen2');
                 triggerTealScreenSequence();
             } else {
@@ -343,25 +339,47 @@
             document.getElementById(show).classList.add('active');
         }
 
+        // Screen 2 Animation flow logic
         function triggerTealScreenSequence() {
             setTimeout(() => {
                 const btn = document.getElementById('surprise-btn');
                 btn.style.display = "inline-block";
                 setTimeout(() => btn.style.opacity = 1, 100);
+            }, 2000); // Button appears after 2 seconds automatically
+        }
+
+        function showScreen3() {
+            navigateTo('screen2', 'screen3');
+        }
+
+        function showScreen4() {
+            navigateTo('screen3', 'screen4');
+            initFireworksLoop();
+        }
+
+        function showScreen5() {
+            window.runFireworks = false; // Stop canvas loop
+            navigateTo('screen4', 'screen5');
+            
+            // Automatic flipping trigger after 2 seconds
+            setTimeout(() => {
+                document.getElementById('gift-card').classList.add('flipped');
             }, 2000);
         }
 
-        function showScreen3() { navigateTo('screen2', 'screen3'); }
-        function showScreen4() { navigateTo('screen3', 'screen4'); initFireworksLoop(); }
-        function showScreen5() { window.runFireworks = false; navigateTo('screen4', 'screen5'); setTimeout(() => { document.getElementById('gift-card').classList.add('flipped'); }, 2000); }
-
+        // --- FIREWORKS GAME ENGINE ---
         window.runFireworks = false;
         function initFireworksLoop() {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
             window.runFireworks = true;
-            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-            window.addEventListener('resize', resize); resize();
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
 
             class Bit {
                 constructor(x, y, color) {
@@ -369,40 +387,85 @@
                     this.radius = Math.random() * 2 + 1;
                     const speed = Math.random() * 6 + 2;
                     const rad = Math.random() * Math.PI * 2;
-                    this.vx = Math.cos(rad) * speed; this.vy = Math.sin(rad) * speed;
-                    this.alpha = 1; this.fade = Math.random() * 0.015 + 0.012;
+                    this.vx = Math.cos(rad) * speed;
+                    this.vy = Math.sin(rad) * speed;
+                    this.alpha = 1;
+                    this.fade = Math.random() * 0.015 + 0.012;
                 }
                 render() {
-                    ctx.save(); ctx.globalAlpha = this.alpha; ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); ctx.restore();
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.restore();
                 }
-                move() { this.x += this.vx; this.y += this.vy; this.vy += 0.04; this.alpha -= this.fade; }
+                move() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy += 0.04; // Gravity effect
+                    this.alpha -= this.fade;
+                }
             }
 
             class Rocket {
                 constructor() {
-                    this.x = Math.random() * canvas.width; this.y = canvas.height;
-                    this.tx = this.x; this.ty = Math.random() * (canvas.height * 0.5);
-                    this.vy = -(Math.random() * 4 + 7); this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
-                    this.bits = []; this.exploded = false;
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height;
+                    this.tx = this.x;
+                    this.ty = Math.random() * (canvas.height * 0.5);
+                    this.vy = -(Math.random() * 4 + 7);
+                    this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                    this.bits = [];
+                    this.exploded = false;
                 }
                 move() {
-                    if (!this.exploded) { this.y += this.vy; if (this.y <= this.ty) this.explode(); }
-                    else { for (let i = this.bits.length - 1; i >= 0; i--) { this.bits[i].move(); if (this.bits[i].alpha <= 0) this.bits.splice(i, 1); } }
+                    if (!this.exploded) {
+                        this.y += this.vy;
+                        if (this.y <= this.ty) this.explode();
+                    } else {
+                        for (let i = this.bits.length - 1; i >= 0; i--) {
+                            this.bits[i].move();
+                            if (this.bits[i].alpha <= 0) this.bits.splice(i, 1);
+                        }
+                    }
                 }
-                explode() { this.exploded = true; for (let i = 0; i < 70; i++) { this.bits.push(new Bit(this.x, this.y, this.color)); } }
+                explode() {
+                    this.exploded = true;
+                    for (let i = 0; i < 70; i++) {
+                        this.bits.push(new Bit(this.x, this.y, this.color));
+                    }
+                }
                 render() {
-                    if (!this.exploded) { ctx.beginPath(); ctx.arc(this.x, this.y, 3, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); }
-                    else { this.bits.forEach(b => b.render()); }
+                    if (!this.exploded) {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                    } else {
+                        this.bits.forEach(b => b.render());
+                    }
                 }
             }
 
             let rockets = [];
             function frame() {
                 if (!window.runFireworks) return;
-                ctx.fillStyle = 'rgba(2, 2, 8, 0.2)'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                if (Math.random() < 0.04 && rockets.length < 5) { rockets.push(new Rocket()); }
-                for (let i = rockets.length - 1; i >= 0; i--) { rockets[i].move(); rockets[i].render(); if (rockets[i].exploded && rockets[i].bits.length === 0) { rockets.splice(i, 1); } }
+                ctx.fillStyle = 'rgba(2, 2, 8, 0.2)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                if (Math.random() < 0.04 && rockets.length < 5) {
+                    rockets.push(new Rocket());
+                }
+
+                for (let i = rockets.length - 1; i >= 0; i--) {
+                    rockets[i].move();
+                    rockets[i].render();
+                    if (rockets[i].exploded && rockets[i].bits.length === 0) {
+                        rockets.splice(i, 1);
+                    }
+                }
                 requestAnimationFrame(frame);
             }
             frame();
